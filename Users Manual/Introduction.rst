@@ -30,9 +30,9 @@ If you have the energy, and a willingness to learn, you can become a developer a
 
 The content you create can then be delivered in many different skins. In Zikula these are called themes. A theme uses templates laid out using an easy to understand templating language called smarty_ and standard html to create the appearance of your site. There are themes that are developed for Zikula out of the box and you can use these as a starting point to develop your own special style.
 
-.. _smarty http://www.smarty.net/
-.. _GitHub https://github.com/zikula/core
-.. _Zikula http://zikula.org
+.. _smarty: http://www.smarty.net/
+.. _GitHub: https://github.com/zikula/core
+.. _Zikula: http://zikula.org
 
 Organization of this manual
 ----------------------------
