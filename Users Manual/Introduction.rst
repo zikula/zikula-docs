@@ -1,7 +1,7 @@
-A users guide to Zikula
+A Users Guide to Zikula
 =======================
 :Author:
-Timothy Paustian
+    Timothy Paustian
 
 History
 -------
@@ -19,12 +19,12 @@ A second goal of the platform is to provide a powerful backend. As any good cms 
 
 A third goal of Zikula is flexibility. Using various extensions, Zikula can be easily expanded to serve any possible purpose a web site can fulfill. These expansions usually fall into two broad categories, creating content and giving the site its own unique appearance. To delivery content the user can install all sorts of programmatic extensions (called modules) that can perform many interesting tasks, including. 
 
-*Serving static and dynamic content in any kind of flavor that you want.
-*Calendar programs to plan and remind users of events
-*Blogging in the news module
-*Polling Software
-*Legal Documents (privacy policy, Terms of Service, etc)
-*and more
+* Serving static and dynamic content in any kind of flavor that you want.
+* Calendar programs to plan and remind users of events
+* Blogging in the news module
+* Polling Software
+* Legal Documents (privacy policy, Terms of Service, etc)
+* and more
  
 If you have the energy, and a willingness to learn, you can become a developer and create your own modules.
 
@@ -37,7 +37,7 @@ The content you create can then be delivered in many different skins. In Zikula 
 Organization of this manual
 ----------------------------
 
-Before you can use Zikla, you need to install it, so the first section of this manual will go thorugh getting Zikula up and running. In this we will talk about hosting requirements, disk space, installation and finally locking down your site. We will finish up this section with a quick tour of a newly installed zikula site and talk about its basic set up.
+Before you can use Zikula, you need to install it, so the first section of this manual will go through getting Zikula up and running. In this we will talk about hosting requirements, disk space, installation and finally locking down your site. We will finish up this section with a quick tour of a newly installed zikula site and talk about its basic set up.
 
 The next section will teach you how to install modules into Zikula. We will talk about where to find modules, how to get them, and installing them using the Extensions Module. The rest of this section will cover installing some of the more common modules you may be interested in using and their features. 
 
@@ -45,4 +45,4 @@ A third section will look at themes used in Zikula and how to change the appeara
 
 The fourth section will be a cookbook where we present common functionality that users of Zikula want to create in their sites and how you can do them in Zikula. 
 
-Finally, we will close out the manual looking at Module and plugin development and how you, with a little programming background, can contribute to the Zikula projecct.
+Finally, we will close out the manual looking at Module and plugin development and how you, with a little programming background, can contribute to the Zikula project.
