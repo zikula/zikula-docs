@@ -44,7 +44,7 @@ When you first start to play with a technology that you are unfamiliar with, it 
     
     When MAMP launches, a status window appears showing you that the program is active and allowing you to turn apache and mysql on and off as needed.
 
-#. Make sure that the Status of both the Apache server and MySQL is green.
+5. Make sure that the Status of both the Apache server and MySQL is green.
 #. Click on the Open Start Page button.
 #. If all is well, a web browser should open and you should see the MAMP start page.
 
@@ -52,16 +52,19 @@ When you first start to play with a technology that you are unfamiliar with, it 
     :alt: The browser window start page for MAMP
     
     If you see this start page, then your set up is working. Note that the URL uses a different port (8888) than Apache normally does (80). This is to prevent you having to ask admin permission for MAMP every time you open it.
-#. Lets create a php file and make sure that our own code will work with this server. 
-#. Navigate to your Server Root directory and create a file with this php code::
+8. Lets create a php file and make sure that our own code will work with this server. 
+#. Navigate to your Server Root directory and create a file with this php code
+
+::
+
     <?php
         print "<h2>Hello World!</h2>\n";
         print "<p>This is my first attempt at a PHP web page.</p>\n"
     ?>
 
-#. Save the file in your Server Root directory, naming it test.php
-#. Now point your browser at this address. http://http://localhost:8888/test.php. If all is well you should see your web page in all its glory. You have now demonstrated that MAMP is running on your local machine. Let's now install Zikula.
-#. Download _Zikula  (You will need toclick on the Get Zikula button located in the upper left corner.)
+10. Save the file in your Server Root directory, naming it test.php
+#. Now point your browser at this address. http://localhost:8888/test.php. If all is well you should see your web page in all its glory. You have now demonstrated that MAMP is running on your local machine. Let's now install Zikula.
+#. Download Zikula_  (You will need toclick on the Get Zikula button located in the upper left corner.)
 #. Unzip the contents and rename the folder Zikula. 
 #. Drop the folder into your Server Root directory (htdocs)
 #. You will need to set permissions in one folder in the Zikula Directory. Open your Zikula folder and click on the ztemp folder. Choose Get Info. From there go to the sharing and permissions section and make sure that everyone can read and write to this folder. Click on the little gear and choose *Apply to enclosed items* This will allow Zikula to write needed files into this directory.
@@ -75,22 +78,4 @@ When you first start to play with a technology that you are unfamiliar with, it 
     In this dialog create a user. Be sure to write down the username and password you set up here, you will need them during the installation of Zikula. Also make sure you click the create *Create database with same name and grant all privileges* 
     
 
-#. Now navigate to http://localhost:8888/Zikula/install.php and follow the directions for the install. Once the installation process is complete, you can visit your Zikula website by navigating to index.php, http://localhost:8888/Zikula/
-    
-Finding a Hosting Environment for Zikula
------------------------------------------
-
-#. System Requirements for Zikula
-#. php
-#. mysql
-#. Apache
-#. Disk space required
-#. Bandwidth
-#. Moving files into your directory
-#. FTP programs
-#. File Managers that come with sites
-#. Creating mysql databases similar to what we did with MAMP, most hosting environments have phpmyadmin abilities
-
-.. _MAMP: http://www.mamp.info
-.. _WAMP: http://www.wampserver.com
-.. _Zikula: http://zikula.org 
+19. Now navigate to http://localhost:8888/Zikula/install.php and follow the directions for the install. Once the installation process is complete, you can visit your Zikula website by navigating to index.php, http://localhost:8888/Zikula/
