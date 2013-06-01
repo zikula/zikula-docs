@@ -30,7 +30,12 @@ In addition if you have the energy, and a willingness to learn, you can become a
 
 The content you create can then be delivered in many different skins. In Zikula these are called themes. A theme uses templates laid out using an easy to understand templating language called smarty_ and standard html to create the appearance of your site. There are themes that are developed for Zikula out of the box and you can use these as a starting point to develop your own special style.
 
-Organization of this manual
+What You Should Know
+---------------------
+
+I do expect you to have a basic foundation before setting off on the journey of learning and using Zikula. I expect you to be familiar with using a web browser such as Firefox, Safari or Internet Explorer. You shoudl also know the basics of html_ markup language. Finally, you need to have patience and a willingness to ask questions when you get stuck. And you will get stuck. When this happens, visting the Zikula Forums_
+
+Organization of this Manual
 ----------------------------
 
 Before you can use Zikula, you need to install it, so the first section of this manual will go through getting Zikula up and running. In this we will talk about hosting requirements, disk space, installation and finally locking down your site. We will finish up this section with a quick tour of a newly installed Zikula site and talk about its basic set up.
@@ -46,3 +51,5 @@ Finally, we will close out the manual looking at Module and plugin development a
 .. _smarty: http://www.smarty.net/
 .. _GitHub: https://github.com/zikula/core
 .. _Zikula: http://zikula.org
+.. _html: http://www.w3schools.com/html/default.asp
+.. _Zikula Forums: http://community.zikula.org/module-Forum.htm
