@@ -3,9 +3,6 @@ Installing Zikula
 :Author:
     Timothy Paustian
     
-Testing out Zikula on your Desktop Computer
---------------------------------------------
-
 System Requirements
 -------------------
 
@@ -28,10 +25,13 @@ Over the years developers have created sets of php scripts and programs that han
 
 In the next section we will take a test drive of installing a web server on your local computer, and then getting Zikula up and running.
 
+Testing out Zikula on your Desktop Computer
+--------------------------------------------
+
 Get MAMP or WAMP
 ----------------
 
-When you first start to play with a technology that you are unfamiliar with, it is often useful to set up a test environment on your own computer, so that you can play and not have to worry about the entire internet seeing what you are doing. This is a very common desire by many web developers. In the past, the process of getting AMP running on your machine was arduous, time-consuming, and fraught with little pitfalls. Lucky for you the good folks at AppSolute created MAMP (Mac, Apache, MySQL, and php) and WAMP (Windows, Apache, MySQL, and php). These are open source, free projects, hosted at source forge. They provide you with everything you need to get a server up and running on your local machine. The process is very simple, just follow along with these steps.
+When you first start investigate a technology that you are unfamiliar with, it is often useful to set up a test environment on your own computer, so that you can play and not have to worry about the entire internet seeing what you are doing. This is a very common desire by many web developers. In the past, the process of getting AMP running on your machine was arduous, time-consuming, and fraught with little pitfalls. Lucky for you the good folks at AppSolute created MAMP (Mac, Apache, MySQL, and php) and WAMP (Windows, Apache, MySQL, and php). These are open source, free projects, hosted at source forge. They provide you with everything you need to get a server up and running on your local machine. The process is very simple, just follow along with these steps.
 
 #. Go get MAMP_ or WAMP_ and download the software to your machine. 
 #. Once the software is downloaded, unzip it and move it to the /Applications folder (mac). The windows installer will put things in their proper place.
@@ -70,7 +70,7 @@ When you first start to play with a technology that you are unfamiliar with, it 
 #. You will need to set permissions in one folder in the Zikula Directory. Open your Zikula folder and click on the ztemp folder. Choose Get Info. From there go to the sharing and permissions section and make sure that everyone can read and write to this folder. Click on the little gear and choose *Apply to enclosed items* This will allow Zikula to write needed files into this directory.
 #. Go back to the MAMP start page. While in MAMP, click on the Open Start Page button. You will notice a tab title phpMyAdmin. This is a set of php pages that help you to create and manage MySQL databases using an easy to navigate interface.
 #. While in phpMyAdmin, we need to create a database in MySQL for Zikula to use and also create a database user that the Zikula code will use to access the database. We can do these tasks in one command.
-#. While in the phpmyadmin page, click on the *Users* tab (upper left of the page). While in the Users tab, find the *Add user* link near the bottom of the page and click on it. Fill out the dialog as shown here.
+#. While in the phpmyadmin page, click on the *Users* tab (upper left of the page). Find the *Add user* link near the bottom of the page and click on it. Fill out the dialog as shown here.
 
 .. figure:: CreateUserPhpMyAdmin.png
     :alt: Creating a new user in phpMyAdmin
@@ -81,6 +81,16 @@ When you first start to play with a technology that you are unfamiliar with, it 
 #. After installation if you get a large number of SQL errors, you may need to go to the config file to turn off STRICT mode. Inside your Zikula directory, open config/config.php and go to about line 45 under Error Reporting. Make sure it looks like this::
 
     $ZConfig['Debug']['error_reporting_production'] = E_ALL & ~E_NOTICE & ~E_WARNING & ~E_STRICT;
+
+Installing Zikula at an ISP
+---------------------------
+
+The process of setting up Zikula at an ISP is very similar to setting it up on your local compupter. It is impossible to give specific directions on installing Zikula at your internet service provider, but here are some general tips. 
+* When choosing an ISP, make sure they meet the minimum system requirements for Zikula. (See the top of this page)
+* You must have the ability to create a MySQL database, and a MySQL user that has permission to read and write the newly created database. If you administer your site using CPanel or some other web based gateway, you will mostly likely be able to create a database, by choosing MySQL Databases in the databases section of your admin web page. To create users and permissions, you will normally have phpMyAdmin access and can create a database user with the correct access to your database using methods very similar to what you did to setup your local site.
+* You also need to be able to modfiy the permissions on folders in some fashion. Most ISPs will have a file manager web application that will allow you to modify the permissions of folders and files. 
+
+
 
 .. _MAMP: http://www.mamp.info
 .. _WAMP: http://www.wampserver.com
