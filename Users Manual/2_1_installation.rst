@@ -10,7 +10,7 @@ System Requirements
 -------------------
 
 Zikula requires PHP 5.3.2 or greater and that `date.timezone` be set in the 
-php.ini configuration file. This will normally be taken care of by your hosting environment, but we will demonstrate how to modify this variable in different hosting environments. The minimum MySQL version is 5.1 and it is not recommended to install Zikula with MySQL STRICT mode enabled. During the configuration of Zikula we will go through not to make sure the STRICT mode for MySQL is turned. off. Finally, Zikula requires Apache 2.0 or higher to run well. Make sure any hosting environment that you choose has installed these versions of the packages or greater.
+php.ini configuration file. This will normally be taken care of by your hosting environment, but we will demonstrate how to modify this variable in different hosting environments. The minimum MySQL version is 5.1 and it is not recommended to install Zikula with MySQL STRICT mode enabled. During the configuration of Zikula we will go through how to turn off STRICT mode for MySQL. Finally, Zikula requires Apache 2.0 or higher to run well. Make sure any hosting environment that you choose has installed these versions of the packages or greater.
 
 Background Technology of Serving Web Pages
 ------------------------------------------
@@ -78,6 +78,9 @@ When you first start to play with a technology that you are unfamiliar with, it 
     In this dialog create a user. Be sure to write down the username and password you set up here, you will need them during the installation of Zikula. Also make sure you click the create *Create database with same name and grant all privileges* 
     
 19. Now navigate to http://localhost:8888/Zikula/install.php and follow the directions for the install. Once the installation process is complete, you can visit your Zikula website by navigating to index.php, http://localhost:8888/Zikula/
+#. After installation if you get a large number of SQL errors, you may need to go to the config file to turn off STRICT mode. Inside your Zikula directory, open config/config.php and go to about line 45 under Error Reporting. Make sure it looks like this::
+
+    $ZConfig['Debug']['error_reporting_production'] = E_ALL & ~E_NOTICE & ~E_WARNING & ~E_STRICT;
 
 .. _MAMP: http://www.mamp.info
 .. _WAMP: http://www.wampserver.com
