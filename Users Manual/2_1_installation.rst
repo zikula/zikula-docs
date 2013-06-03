@@ -53,9 +53,7 @@ When you first start investigate a technology that you are unfamiliar with, it i
     
     If you see this start page, then your set up is working. Note that the URL uses a different port (8888) than Apache normally does (80). This is to prevent you having to ask admin permission for MAMP every time you open it.
 8. Lets create a php file and make sure that our own code will work with this server. 
-#. Navigate to your Server Root directory and create a file with this php code
-
-::
+#. Navigate to your Server Root directory and create a file with this php code::
     <?php
         print "<h2>Hello World!</h2>\n";
         
@@ -64,10 +62,10 @@ When you first start investigate a technology that you are unfamiliar with, it i
 
 10. Save the file in your Server Root directory, naming it test.php
 #. Now point your browser at this address. http://localhost:8888/test.php. If all is well you should see your web page in all its glory. You have now demonstrated that MAMP is running on your local machine. Let's now install Zikula.
-#. Download Zikula_  (You will need toclick on the Get Zikula button located in the upper left corner.)
+#. Download Zikula_  (When at that page, you will need to click on the Get Zikula button located in the upper left corner.)
 #. Unzip the contents and rename the folder Zikula. 
 #. Drop the folder into your Server Root directory (htdocs)
-#. You will need to set permissions in one folder in the Zikula Directory. Open your Zikula folder and click on the ztemp folder. Choose Get Info. From there go to the sharing and permissions section and make sure that everyone can read and write to this folder. Click on the little gear and choose *Apply to enclosed items* This will allow Zikula to write needed files into this directory.
+#. You will need to set permissions in one folder in the Zikula Directory. Open your Zikula folder and click on the ztemp folder. Choose Get Info. From there go to the sharing and permissions section and make sure that everyone can read and write to this folder. Click on the little gear and choose *Apply to enclosed items* This will allow Zikula to write needed files into this directory. You may need to unlock this capability by clicking on the little lock icon on the lower right of this dialog.
 #. Go back to the MAMP start page. While in MAMP, click on the Open Start Page button. You will notice a tab title phpMyAdmin. This is a set of php pages that help you to create and manage MySQL databases using an easy to navigate interface.
 #. While in phpMyAdmin, we need to create a database in MySQL for Zikula to use and also create a database user that the Zikula code will use to access the database. We can do these tasks in one command.
 #. While in the phpmyadmin page, click on the *Users* tab (upper left of the page). Find the *Add user* link near the bottom of the page and click on it. Fill out the dialog as shown here.
@@ -77,8 +75,16 @@ When you first start investigate a technology that you are unfamiliar with, it i
     
     In this dialog create a user. Be sure to write down the username and password you set up here, you will need them during the installation of Zikula. Also make sure you click the create *Create database with same name and grant all privileges* 
     
-19. Now navigate to http://localhost:8888/Zikula/install.php and follow the directions for the install. Once the installation process is complete, you can visit your Zikula website by navigating to index.php, http://localhost:8888/Zikula/
-#. After installation if you get a large number of SQL errors, you may need to go to the config file to turn off STRICT mode. Inside your Zikula directory, open config/config.php and go to about line 45 under Error Reporting. Make sure it looks like this::
+19. Now navigate to http://localhost:8888/Zikula/install.php and follow the directions for the install. During the install, leave the admin username as admin and set a password. This is not, and probably should not, be the same password as the one you used for the database user. For this demonstration, we will leave it as admin, but for a production site, it is a very bad idea to leave the default admin username as your administrator. Also, make sure your choose a strong password for you admin account. Make sure you remember your admin username and password. you will need these to administer your site.
+
+#. Once the installation process is complete, you can visit your Zikula website by navigating to index.php, http://localhost:8888/Zikula/. You should be automatically taken to the default admin page.
+
+.. figure:: adminPage.png
+    :alt: The default admin page of Zikula
+    
+    The default admin page of Zikula. 
+    
+21. After installation if you get a large number of SQL errors, you may need to go to the config file to turn off STRICT mode. Inside your Zikula directory, open config/config.php and go to about line 45 under Error Reporting. Make sure it looks like this::
 
     $ZConfig['Debug']['error_reporting_production'] = E_ALL & ~E_NOTICE & ~E_WARNING & ~E_STRICT;
 
@@ -90,7 +96,7 @@ The process of setting up Zikula at an ISP is very similar to setting it up on y
 * You must have the ability to create a MySQL database, and a MySQL user that has permission to read and write the newly created database. If you administer your site using CPanel or some other web based gateway, you will mostly likely be able to create a database, by choosing MySQL Databases in the databases section of your admin web page. To create users and permissions, you will normally have phpMyAdmin access and can create a database user with the correct access to your database using methods very similar to what you did to setup your local site.
 * You also need to be able to modfiy the permissions on folders in some fashion. Most ISPs will have a file manager web application that will allow you to modify the permissions of folders and files. 
 
-
+In the next section will we begin to talk about how to start configuring your Zikula site.
 
 .. _MAMP: http://www.mamp.info
 .. _WAMP: http://www.wampserver.com
