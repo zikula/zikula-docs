@@ -1,4 +1,4 @@
-Coniguring your Zikula Site
+Configuring your Zikula Site
 ===========================
 
 So you have your site installed and up and running, now what? You probably want to be able to add content to your site, how is that done? You may want to have a blog attached to your site that lets visitors know the latest news. This section will take you through the basics of beginning the set up of Zikula. 
@@ -10,7 +10,7 @@ Before you do anything, Zikula may warn you that there are security issues with 
 
 chmod 400 config.php
 
-Also, magic_quotes should be off for your site. If it is turned on, it is possible to turn it off in two ways and the php manual_ explains how to do it. 
+Also, magic_quotes should be off for your site. If it is turned on, it is possible to turn it off in two ways and the `php manual` <http://php.net/manual/en/security.magicquotes.disabling.php> explains how to do it. 
 
 Configuring site basics
 -----------------------
@@ -48,7 +48,7 @@ While you are here, you will also want to change the meta tag settings. This is 
 Setting the Theme
 -----------------
 
-Dozens of Zikula themes have been created and a large collection of them can be found at zikula/themes_ on GitHub. It would be difficult to pick through all these themes, but a gallery site_ has been set up where you can browse many of them. Parts of it are in german, but you can still test and download themes from there. If you browse through the themes you will find the Terrafirma has a very nice garden flavor to it, so let's use that one. This can be downloaded from Github, where the most recent themes should be located. Got to the Zikula Themes_ at GitHub and then click on the Zip button near the top of the page. This will download all the themes and you can grab the Terrafirma theme out of the downloaded and unzipped package. Place the Terrafirma folder in the themes folder of your website. You can play with any of the themes that were downloaded. All of them should work with the latest version of Zikula.
+Dozens of Zikula themes have been created and a large collection of them can be found at `zikula/themes <https://github.com/zikula/themes>` on GitHub. It would be difficult to pick through all these themes, but a `gallery site <http://www.zikula-themes.de/index.php?module=ThemeGallery&type=user&func=main&lang=en>` has been set up where you can browse many of them. Parts of it are in german, but you can still test and download themes from there. If you browse through the themes you will find the Terrafirma has a very nice garden flavor to it, so let's use that one. This can be downloaded from Github, where the most recent themes should be located. Got to the `Zikula Themes <https://github.com/zikula/themes/>` at GitHub and then click on the Zip button near the top of the page. This will download all the themes and you can grab the Terrafirma theme out of the downloaded and unzipped package. Place the Terrafirma folder in the themes folder of your website. You can play with any of the themes that were downloaded. All of them should work with the latest version of Zikula.
 
 We now want our site to use our new Terrafirma theme. Go to the Administration page, and then click on the Layout tab. Next, click on themes. You will be presented with a list of possible themes and you should see the Terrafirma theme at the bottom of the list.
 
@@ -73,8 +73,3 @@ Click on the green checkmark next to the Terrafirma theme to choose it as the de
 - Adding users
 - Adding permissions for specific groups
 - Setting up allowed HTML tags
-
-.. php manual_: .. _linkname: http://www.url.here/
-.. _zikula/theme: https://github.com/zikula/themes
-.. _gallery site: http://www.zikula-themes.de/index.php?module=ThemeGallery&type=user&func=main&lang=en
-.. _Zikula Themes: https://github.com/zikula/themes/
