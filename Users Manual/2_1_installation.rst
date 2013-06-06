@@ -90,7 +90,7 @@ When you first start investigate a technology that you are unfamiliar with, it i
 
 #. Once the installation process is complete, you can visit your Zikula website by navigating to index.php, http://localhost:8888/Zikula/. You should be automatically taken to the default admin page.
 
-.. figure:: adminPage.png
+.. figure:: admin.png
     :alt: The default admin page of Zikula
     
     The default admin page of Zikula. 
