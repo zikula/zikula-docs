@@ -3,9 +3,9 @@ Installing Zikula
 :Author:
     Timothy Paustian
     
-    Quick Guide
-    -----------
-    
+Quick Guide
+-----------
+
     1. Download Zikula_ and place it in your web directory where you want to serve pages from
     #. Set permissions of the zTemp directory so that it is world writable
     #. Create a MySQL database that Zikula can use and set up a MySQL user with all privileges on that database. Be sure to remember the MySQL user and password
