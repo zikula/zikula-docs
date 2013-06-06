@@ -3,6 +3,17 @@ Installing Zikula
 :Author:
     Timothy Paustian
     
+    Quick Guide
+    -----------
+    
+    1. Download Zikula_ and place it in your web directory where you want to serve pages from
+    #. Set permissions of the zTemp directory so that it is world writable
+    #. Create a MySQL database that Zikula can use and set up a MySQL user with all privileges on that database. Be sure to remember the MySQL user and password
+    #. Navigate to http://PathToZikulaFolder/Zikula/install.php and follow the directions for the install. During the install, you will be asked for your database name, database username and password.
+    #. You will also create the initial admin account for Zikula. Pick a name other than admin and use a strong password.
+    #. Once the installation process is complete, you can visit your Zikula website by navigating to http://PathToZikulaFolder/Zikula/index.php
+    #. Remove install.php and the install folder from your Zikula root. Also set the permissions of your config file so that it is only readable by the owner.
+
 System Requirements
 -------------------
 
@@ -63,7 +74,7 @@ When you first start investigate a technology that you are unfamiliar with, it i
 10. Save the file in your Server Root directory, naming it test.php
 #. Now point your browser at this address. http://localhost:8888/test.php. If all is well you should see your web page in all its glory. You have now demonstrated that MAMP is running on your local machine. Let's now install Zikula.
 #. Download Zikula_  (When at that page, you will need to click on the Get Zikula button located in the upper left corner.)
-#. Unzip the contents and rename the folder Zikula. 
+#. Unzip the contents and rename the folder Zikula. Read the installation instructions that come with the Zikula package located at Zikula/docs/en/INSTALL (Note go to a different folder that suits your language if it is not en (English). What follows below is a slightly customized version of the install instructions.
 #. Drop the folder into your Server Root directory (htdocs)
 #. You will need to set permissions in one folder in the Zikula Directory. Open your Zikula folder and click on the ztemp folder. Choose Get Info. From there go to the sharing and permissions section and make sure that everyone can read and write to this folder. Click on the little gear and choose *Apply to enclosed items* This will allow Zikula to write needed files into this directory. You may need to unlock this capability by clicking on the little lock icon on the lower right of this dialog.
 #. Go back to the MAMP start page. While in MAMP, click on the Open Start Page button. You will notice a tab title phpMyAdmin. This is a set of php pages that help you to create and manage MySQL databases using an easy to navigate interface.
@@ -97,6 +108,8 @@ The process of setting up Zikula at an ISP is very similar to setting it up on y
 * You also need to be able to modfiy the permissions on folders in some fashion. Most ISPs will have a file manager web application that will allow you to modify the permissions of folders and files. 
 
 In the next section will we begin to talk about how to start configuring your Zikula site.
+
+
 
 .. _MAMP: http://www.mamp.info
 .. _WAMP: http://www.wampserver.com
