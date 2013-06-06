@@ -44,7 +44,7 @@ Get MAMP or WAMP
 
 When you first start investigate a technology that you are unfamiliar with, it is often useful to set up a test environment on your own computer, so that you can play and not have to worry about the entire internet seeing what you are doing. This is a very common desire by many web developers. In the past, the process of getting AMP running on your machine was arduous, time-consuming, and fraught with little pitfalls. Lucky for you the good folks at AppSolute created MAMP (Mac, Apache, MySQL, and php) and WAMP (Windows, Apache, MySQL, and php). These are open source, free projects, hosted at source forge. They provide you with everything you need to get a server up and running on your local machine. The process is very simple, just follow along with these steps.
 
-#. Go get MAMP_ or WAMP_ and download the software to your machine. 
+#. Go get WAMP_, MAMP_ or XAMPP_ and download the software to your machine. 
 #. Once the software is downloaded, unzip it and move it to the /Applications folder (mac). The windows installer will put things in their proper place.
 #. Your web server files will be stored in a special directory, called the Server Root directory. For MAMP the path is /Applications/MAMP/htdocs. For WAMP the path is c:\wamp\www. For the rest of this section, I will point describe the directions for MAMP. The directions for WAMP are identical and I am getting tired of typing MAMP or WAMP.
 #. Start MAMP. A window should come up showing you the server is starting. When it is finished, it should look like this.
@@ -112,5 +112,6 @@ In the next section will we begin to talk about how to start configuring your Zi
 
 
 .. _MAMP: http://www.mamp.info
-.. _WAMP: http://www.wampserver.com
+.. _WAMP: http://www.wampserver.com/en/
+.. _XAMPP: http://www.apachefriends.org/en/xampp.html
 .. _Zikula: http://zikula.org 
