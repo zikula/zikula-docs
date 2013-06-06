@@ -17,7 +17,7 @@ Quick Guide
 System Requirements
 -------------------
 
-Zikula requires PHP 5.3.2 or greater and that `date.timezone` be set in the 
+Zikula requires PHP 5.3.3 or greater and that `date.timezone` be set in the 
 php.ini configuration file. This will normally be taken care of by your hosting environment, but we will demonstrate how to modify this variable in different hosting environments. The minimum MySQL version is 5.1 and it is not recommended to install Zikula with MySQL STRICT mode enabled. During the configuration of Zikula we will go through how to turn off STRICT mode for MySQL. Finally, Zikula requires Apache 2.0 or higher to run well. Make sure any hosting environment that you choose has installed these versions of the packages or greater.
 
 Background Technology of Serving Web Pages
