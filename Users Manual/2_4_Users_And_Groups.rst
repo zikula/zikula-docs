@@ -29,7 +29,7 @@ Adding Users
 #. Click off acceptance of the Terms of Use, Privacy Policy and the Minimum Age requirement. Your finished registration setup should look like the below figure.
 
 .. figure:: NewUser.png
-    :alt: The new user panel
+    :alt: The finished new user dialog for Sally
     
     Setup of the New User panel for registration of Sally as part of the site.
 
@@ -44,6 +44,7 @@ Adding Users
 8. Now we need to set up our groups. Click on the Users tab and then on the Groups module. Two default groups are listed, Administrators, with one member, and Users, with 5 members. Click on the little group icon at the far right for the Users group.
 #. First we want to remove guest from the Users group. We do not want guests being able to access places where registered users can go. To do this, click on the big red minus sign at the far right.
 #. Next, click on group list to get back to the main view and then on Create new group. A new group should appear, yet be open to editing. Name this group Editors. Leave its type as Core and give a description to the group. Keep the state as closed. If a group is closed, only the admin can add Users to the group. If it is open, users can add themselves to the group. Leave the maximum membership at 0, meaning there is no limit. Click on the green checkmark to save.
+
 .. figure:: CreateGroup.png
     :alt: The create group panel
     
