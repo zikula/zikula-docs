@@ -28,7 +28,7 @@ Adding Users
 #. For the log in information, you can either have Zikula Email the user and have them set up their password, or you can set it immediately. For this example, we will set it now. Click Yes in the Log in information area and type in a password. 
 #. Click off acceptance of the Terms of Use, Privacy Policy and the Minimum Age requirement. Your finished registration setup should look like the below figure.
 
-.. figure:: NewUser.png
+.. figure:: CreateNewUser.png
     :alt: The finished new user dialog for Sally
     
     Setup of the New User panel for registration of Sally as part of the site.
