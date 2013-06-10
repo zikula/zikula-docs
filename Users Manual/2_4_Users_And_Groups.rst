@@ -33,8 +33,8 @@ Adding Users
     
     Setup of the New User panel for registration of Sally as part of the site.
 
- 6. Click on check your entries and if everything checks out to Zikula's satisfaction, click Submit new user.
- #. Your new user should be created and appear in the list of users. Create two more users, Robert (robert22, robert22@friendsoffloswers.com) and Matt (matt21, matt21@friendsoffloswers.com). When you are all done, your users panel should look like this.
+6. Click on check your entries and if everything checks out to Zikula's satisfaction, click Submit new user.
+#. Your new user should be created and appear in the list of users. Create two more users, Robert (robert22, robert22@friendsoffloswers.com) and Matt (matt21, matt21@friendsoffloswers.com). When you are all done, your users panel should look like this.
  
  .. figure:: UsersAdded.png
     :alt: Your finished group of users after following the steps listed.
