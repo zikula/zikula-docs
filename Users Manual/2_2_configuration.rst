@@ -1,21 +1,24 @@
 Configuring your Zikula Site
 ===========================
 
+:Author:
+    Timothy Paustian
+    
 So you have your site installed and up and running, now what? Well first of all I want my site to have a different look. In addition, I want to get rid of that welcome text. How can I do those things? In this section will take you through the basics of beginning the set up of Zikula. In later sections we will get to setting up the modules necessary for adding content to your site.
 
 Quick Guide
 -----------
 
-    #. Make your site secure by setting the config.php file to read-access by owner only
-    #. Turn off `magic quotes <http://php.net/manual/en/security.magicquotes.disabling.php>`_
-    #. Log into your site using your administration username and password.
-    #. Click on the Administration Link and then the General Setting module link
-    #. In the Main Info section fill in the Site Name and Site Description
-    #. Change the meta tags section to match your sites main info. Pay special attention to the meta tags.
-    #. Find a Theme you like at The Ziklula `gallery site <http://www.zikula-themes.de/index.php?module=ThemeGallery&type=user&func=main&lang=en>`_. Download the `Zikula Theme you like <https://github.com/zikula/themes>`_ on GitHub.
-    #. Place this theme into your themes folder of your Zikula site.
-    #. Go to the Administration page, and then click on the Layout tab. Next, click on themes. You will be presented with a list of possible themes and you should see the Terrafirma theme at the bottom of the list.
-    #. Click on the green checkmark next to the theme of choice to set it as the default theme. You will be asked to confirm your choice. When you do, the entire appearance of the site changes to the new theme.
+#. Make your site secure by setting the config.php file to read-access by owner only
+#. Turn off `magic quotes <http://php.net/manual/en/security.magicquotes.disabling.php>`_
+#. Log into your site using your administration username and password.
+#. Click on the Administration Link and then the General Setting module link
+#. In the Main Info section fill in the Site Name and Site Description
+#. Change the meta tags section to match your sites main info. Pay special attention to the meta tags.
+#. Find a Theme you like at The Ziklula `gallery site <http://www.zikula-themes.de/index.php?module=ThemeGallery&type=user&func=main&lang=en>`_. Download the `Zikula Theme you like <https://github.com/zikula/themes>`_ on GitHub.
+#. Place this theme into your themes folder of your Zikula site.
+#. Go to the Administration page, and then click on the Layout tab. Next, click on themes. You will be presented with a list of possible themes and you should see the Terrafirma theme at the bottom of the list.
+#. Click on the green checkmark next to the theme of choice to set it as the default theme. You will be asked to confirm your choice. When you do, the entire appearance of the site changes to the new theme.
 
 Security First
 --------------

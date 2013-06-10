@@ -1,25 +1,28 @@
 Setting Content
 ---------------
 
+:Author:
+    Timothy Paustian
+    
 Now that we have the appearance as we like, it's time to start adding content. To add content to Zikula, you need to install a module that will take the content in, store it in the database, and then display the content when asked. There are two very common forms of content that websites post, blogs and documentation. Blogs are time-sensitive information that reports what is going on right now. They can have a different focus depending upon your sites goals or your interests. For our gardening example, it could be tips and comments about the growing season. When to plant flowers, significant weather events, etc. Documentation is more permanent information that visitors may want to read at any time. For the Gardening site this could be comments on the best fertilizer, what kinds of flowers to plant in shady areas or ways to deal with rabbits. Zikula has different modules to handle these tasks.
 
 Quick Guide
 -----------
-    #. Download the News_, EZComments_, and Scribite_ modules and unzip. Drop the unpacked modules folders into Zikula/modules/.
-    #. In the Extentions module, install EZComments, Scribite and the News modules in that order.
-    #. Go to the admin interface for the News Module.
-    #. Click on the on the Hooks link at the top of the News module interface.
-    #. Drag Scribite hook from its location on the right, to the News Articles Hooks area. 
-    #. Do the same with the EZComments module, make sure it is above the Scribite module in the Hook List
-    #.  Navigate back to the News article list (click on News articles list on the left) then open the News introduction article for editing (Click on the red pen). You now have a WYSIWYG editing interface.
-    #. You can also see how EZComments affected your article. Go to the News Introduction Article and click on the eye to view it. At the bottom you will see a comment box. Type a comment and hit submit. Many content modules can have comments added to them.
-    #. Install the Content module
-    #. If you like, you can hook the EZComments module to the Contents module.
-    #. Click on Pages list. From here you will see a Content Introduction Page.
-    #. The Introductory page explains how to use the module
-    #. In the Admin Panel click on the Security Tab and then Click on Security center
-    #. Click on Allowed HTML settings.
-    #. A list of HTML tags will be shown. From here you can modify what tags those using forms on your site can use. When you have the settings as you like, click on Save
+#. Download the News_, EZComments_, and Scribite_ modules and unzip. Drop the unpacked modules folders into Zikula/modules/.
+#. In the Extentions module, install EZComments, Scribite and the News modules in that order.
+#. Go to the admin interface for the News Module.
+#. Click on the on the Hooks link at the top of the News module interface.
+#. Drag Scribite hook from its location on the right, to the News Articles Hooks area. 
+#. Do the same with the EZComments module, make sure it is above the Scribite module in the Hook List
+#.  Navigate back to the News article list (click on News articles list on the left) then open the News introduction article for editing (Click on the red pen). You now have a WYSIWYG editing interface.
+#. You can also see how EZComments affected your article. Go to the News Introduction Article and click on the eye to view it. At the bottom you will see a comment box. Type a comment and hit submit. Many content modules can have comments added to them.
+#. Install the Content module
+#. If you like, you can hook the EZComments module to the Contents module.
+#. Click on Pages list. From here you will see a Content Introduction Page.
+#. The Introductory page explains how to use the module
+#. In the Admin Panel click on the Security Tab and then Click on Security center
+#. Click on Allowed HTML settings.
+#. A list of HTML tags will be shown. From here you can modify what tags those using forms on your site can use. When you have the settings as you like, click on Save
 
 
 

@@ -1,17 +1,44 @@
 Users and Groups
 ----------------
 
+:Author:
+    Timothy Paustian
+    
 Quick Guide
 -----------
+Adding a user
++++++++++++++
+#. Click on Create New User. In the new user panel you can set the username and Email address. 
+#. For the log in information, you can either have Zikula Email the user and have them set up their password, or you can set it immediately. For this example, we will set it now. Click Yes in the Log in information area and type in a password. 
+#. Click off acceptance of the Terms of Use, Privacy Policy and the Minimum Age requirement.
+#. Click on check your entries and if everything checks out to Zikula's satisfaction, click Submit new user.
+
+Adding a Group
+++++++++++++++
+1. Click on the Users tab and then on the Groups module
+#. Click on Create new group. A new group should appear, yet be open to editing. 
+#. Name the group. Select whether the group is Core, Public or Private.
+#. Give the group a description and select Open or Closed for its state. Open groups allow registered users to add themselves. Close groups are only modified by those with admin access.
+#. Set the maxiumu membership, 0 meaning unlimited membership.
+
+Setting Permissions
++++++++++++++++++++
+1. Click on the Users tab and then on the Permissions module.
+#. Click on Create new permission rule. A rule will be created at the bottom of the table. In the Group section, pick the group the rule affects.
+#. For the Component type what modules are affected. 
+#. Choose what instance of the module is affected by this rule. Leaving the instance as .* makes it apply to all instances. 
+#. Set the access rule to the level of permission that you want this rule to apply. 
+#. Save the rule by clicking on the green checkmark. 
+#. Finally, move this rule to a placed in the permission table where it will have its desired affect. Rules are read from top to bottom. See the below description for more details.
 
 Levels of use of your Zikula Site
 ---------------------------------
 
-Users are a way to identify a specific individual who comes to your site and then adapt the site accordingly. Comments they make or articles that might be posted to the site are attributed to them. If you have a forum install, suck as Dizkus, they can post under their user name. Groups are a way of putting together communities of users, and controlling access to certain parts of the site. For example, maybe you want to have staff that are working on your Friends of Flowers site to be able to post articles. You do not want to add them to the Administrators since that will allow them access to modifying your whole site. Instead, you can place them all in a Editors group and then set the permissions such that only they can post new content. (More about permissions in a minute)
+Users are a way to identify a specific individual who comes to your site and then adapt the site accordingly. Comments they make or articles that might be posted to the site are attributed to them. If you have a forum install, such as Dizkus, they can post under their user name. Groups are a way of putting together communities of users, and controlling access to certain parts of the site. For example, maybe you want to have staff that are working on your Friends of Flowers site to be able to post articles. You do not want to add them to the Administrators since that will allow them access to modifying your whole site. Instead, you can place them all in a separate group and then set the permissions such that only they can post new content. (More about permissions in a minute)
 
 When you first install a Zikula site there are two groups already made for you, Users and Administrators. You cannot delete these groups because they are essential for running the system. You can create other groups and add users to them.
 
-When a visitor comes to your site, they are treated as Unregistered and this can be thought of as a third group of users of your site. They will have access to all public areas of the site. If they sign up for an account or you create one for them, they are added to the Users group automatically and have access to any part of the site that is open to registered users. The best way to learn about how this works is to work with them. Lets imaging that you have 3 staff you want to add, Sally, Robert and Matt. They will have access to Content module and be able to write articles. We also want Sally to be able to admin the Content module. Finally we have a Readers group that has access to specific content. 
+When a visitor comes to your site, they are treated as Unregistered and this can be thought of as a third group of users of your site. They will have access to all public areas of the site. If they sign up for an account or you create one for them, they are added to the Users group automatically and have access to any part of the site that is open to registered users. The best way to learn about how this works is to do things with them. Lets start with an example.  Imagine that you have 3 staff you want to add, Sally, Robert and Matt. They will have access to Content module and be able to write articles. We also want Sally to be able to admin the Content module. Finally we have a Readers group that has access to specific content. 
 
 Adding Users
 ------------

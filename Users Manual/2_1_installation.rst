@@ -6,13 +6,13 @@ Installing Zikula
 Quick Guide
 -----------
 
-    1. Download Zikula_ and place it in your web directory where you want to serve pages from
-    #. Set permissions of the zTemp directory so that it is world writable
-    #. Create a MySQL database that Zikula can use and set up a MySQL user with all privileges on that database. Be sure to remember the MySQL user and password
-    #. Navigate to http://PathToZikulaFolder/Zikula/install.php and follow the directions for the install. During the install, you will be asked for your database name, database username and password.
-    #. You will also create the initial admin account for Zikula. Pick a name other than admin and use a strong password.
-    #. Once the installation process is complete, you can visit your Zikula website by navigating to http://PathToZikulaFolder/Zikula/index.php
-    #. Remove install.php and the install folder from your Zikula root. Also set the permissions of your config file so that it is only readable by the owner.
+1. Download Zikula_ and place it in your web directory where you want to serve pages from
+#. Set permissions of the zTemp directory so that it is world writable
+#. Create a MySQL database that Zikula can use and set up a MySQL user with all privileges on that database. Be sure to remember the MySQL user and password
+#. Navigate to http://PathToZikulaFolder/Zikula/install.php and follow the directions for the install. During the install, you will be asked for your database name, database username and password.
+#. You will also create the initial admin account for Zikula. Pick a name other than admin and use a strong password.
+#. Once the installation process is complete, you can visit your Zikula website by navigating to http://PathToZikulaFolder/Zikula/index.php
+#. Remove install.php and the install folder from your Zikula root. Also set the permissions of your config file so that it is only readable by the owner.
 
 System Requirements
 -------------------
