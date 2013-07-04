@@ -27,7 +27,7 @@ When you are finished, you should have a table with 11 values in it. We have now
 +-------------------+----------------------+--------+-----+
 | methyl red        | methyl red test      | string |  1  |
 +-------------------+----------------------+--------+-----+
-| vogues proskauer  |vogues proskauer test | string |  1  |
+| vogues proskauer  | vogues proskauer test | string |  1  |
 +-------------------+----------------------+--------+-----+
 | simmon's citrate  | simmon's citrate test| string |  1  |
 +-------------------+----------------------+--------+-----+
