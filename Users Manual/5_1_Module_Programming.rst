@@ -19,7 +19,7 @@ Double-click on the Model box to call up the modeling area. Create the one and o
 Next, click on String in the field types, making its Name, name, set leading to true, and leave mandatory as true. We will now enter all the test values. Remember that these are 1 character long and can only have the values +,-,u or v. For each field, create it using the string tool, name it as shown on the table below, set its default value to +, set it Leading to false and Size to 1.
 When you are finished, you should have a table with 11 values in it. We have now defined our model for this application. Close the Model window and go back to the main model view, now double click on Controller.
 +-------------------+---------------------+---------+-----+
-| Item Name         | Description         | Type    |Size |
+| Item Name         | Description         | Type    | Size |
 +===================+=====================+=========+=====+
 | name              | name of the species | string  | 255 |
 +-------------------+----------------------+--------+-----+
