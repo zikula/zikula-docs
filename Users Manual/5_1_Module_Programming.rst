@@ -51,6 +51,7 @@ We are now ready to generate the code. To do this, choose File->Generate Applica
 A second dialog will come up asking what cartridges you want made. The only one that is important for making a Zikula application is the zclassic cartridge. The others are for other purposes and are beyond the scope of this tutorial. Make sure at least zclassic is checked and hit OK. If you choose reporting, another dialog will come up asking which reports to generate. When you are all ready, click OK and the application will generate your code and then beautify it. 
 Now lets examine what MOST created by going to the folder you specified for creation of the modules. Depending upon what you ask to be generated, you will see a number of folders. For you module, we are interested in the zclassic folder; open it up.
 Inside zclassic is a README file, a src folder, and a test folder. Open src/modules and inside it is your generated module, StrainID?. Open this folder and inside you will see the typical arrangement for a Zikula 1.3 and greater module. The folders you will see are
+
 - docs
 - images
 - javascript
@@ -59,7 +60,9 @@ Inside zclassic is a README file, a src folder, and a test folder. Open src/modu
 - style
 - templates
 - workflows
+
 These will also contain folders and files inside of each of them. Much of our work will happen in the lib and template folder. If you open up the lib folder you will see a StrainID? folder and inside of that, this structure.
+
 - Api
 - Base
 - Block
