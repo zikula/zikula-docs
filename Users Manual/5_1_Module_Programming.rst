@@ -18,31 +18,31 @@ Creating the Model
 Double-click on the Model box to call up the modeling area. Create the one and only data table by clicking on the Entity tool and then clicking and dragging in the model area. The name of the entity is strain, the multiple is strains and set leading to true. I have found editing these values in the properties view to be the easiest. (This may be a Mac OS X issue in that editing them in the main model view often does not take.)
 Next, click on String in the field types, making its Name, name, set leading to true, and leave mandatory as true. We will now enter all the test values. Remember that these are 1 character long and can only have the values +,-,u or v. For each field, create it using the string tool, name it as shown on the table below, set its default value to +, set it Leading to false and Size to 1.
 When you are finished, you should have a table with 11 values in it. We have now defined our model for this application. Close the Model window and go back to the main model view, now double click on Controller.
-+-----------+-------------------+-----+--------+
-| Item Name | Description       |Type |	Size   |
-+===========+===================+========+=====+
-| name      |name of the species| string | 255 |
-+-----------+-------------------+--------+-----+
-| indole    | indole test       | string |  1  |
-+-----------+-------------------+--------+-----+
-|methyl red |methyl red test    | string |  1  |
-+-----------+-------------------+--------+-----+
-|vogues proskauer|vogues proskauer test|string|1|
-+-----------+-------------------+--------+-----+
-|simmon's citrate|simmon's citrate test|string|1|
-+-----------+-------------------+--------+-----+
-|H\ :sub:`2`\ S|production of hydrogen sulfide|string|1|
-+-----------+-------------------+--------+-----+
-|phenylalanine|deamination of phenyl alanine|string|1|
-+-----------+-------------------+--------+-----+
-|lysine     |lysine decarboxylation|string| 1  |
-+-----------+-------------------+--------+-----+
-|ornithine  |ornithine decarboxylation|string|1|
-+-----------+-------------------+--------+-----+
-| motility  | motility test     | string | 1   |
-+-----------+-------------------+--------+-----+
-| lactose   |lactose fermentation|string | 1   |
-+-----------+-------------------+--------+-----+
++-------------------+---------------------+---------+-----+
+| Item Name         | Description         | Type    |Size |
++===================+=====================+=========+=====+
+| name              | name of the species | string  | 255 |
++-------------------+----------------------+--------+-----+
+| indole            | indole test          | string |  1  |
++-------------------+----------------------+--------+-----+
+| methyl red        | methyl red test      | string |  1  |
++-------------------+----------------------+--------+-----+
+| vogues proskauer  |vogues proskauer test | string |  1  |
++-------------------+----------------------+--------+-----+
+| simmon's citrate  | simmon's citrate test| string |  1  |
++-------------------+----------------------+--------+-----+
+| H\ :sub:`2`\ S    | production of HS     | string |  1  |
++-------------------+----------------------+--------+-----+
+| phenylalanine     | deamination of PA    | string |  1  |
++-------------------+----------------------+--------+-----+
+| lysine            | lysine decarboxy     | string |  1  |
++-------------------+----------------------+--------+-----+
+| ornithine         | ornithine decarboxy  | string |  1  |
++-------------------+----------------------+--------+-----+
+| motility          | motility test        | string |  1  |
++-------------------+----------------------+--------+-----+
+| lactose           | lactose fermentation | string |  1  |
++-------------------+----------------------+--------+-----+
 
 We will be making two controllers, Admin and User that correspond to the two ways that the data can be manipulated. An Admin and create, edit and delete strain data. A user can search for strains, view results and view all the strains in the database. 
 Click on the Admin tool and drag a box in the Controller pane. To this box add main, display, edit and delete actions. Now click on the User tool and add a main action. We also want a custom search action available for the user. Click on the custom action tool and drag a box inside the user controller. name this action Search. We have now created our model and controller. At the present time it is not possible to create views in MOST. Instead, MOST make a good guess at what you want and generates the code to create these. They are then custom designed as we modify the code that MOST creates. Choose File->Save to save all your changes.
