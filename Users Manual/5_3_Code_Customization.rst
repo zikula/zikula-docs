@@ -18,7 +18,7 @@ It is logical to place admin templates in the admin folder, so I looked there. Y
 
     {* purpose of this template: strains main view in admin area *}
     {include file='admin/header.tpl'}
-    \<p><a href="{modurl modname='StrainID' type='admin' func='edit' }">{gt text="Enter a new strain in the database."}</a></p>
+    <p><a href="{modurl modname='StrainID' type='admin' func='edit' }">{gt text="Enter a new strain in the database."}</a></p>
     {$strain_table}
     {include file='admin/footer.tpl'}
 
@@ -30,75 +30,75 @@ You will notice that this file contains a class StrainID_Controller_Admin that e
 
 ::
 
-public function main($args) {
-  $this->throwForbiddenUnless(SecurityUtil::checkPermission('StrainID::', '::', ACCESS_ADMIN));
-
-    $repository = $this->entityManager->getRepository('StrainID_Entity_strain');
-    $strain_table = StrainID_Util_View::generate_strain_table($this->view, $repository, true);
-    $this->view->assign('strain_table', $strain_table);
-
-    // return main template
-    return $this->view->fetch('admin/main.tpl') . $retText;
-}
+    public function main($args) {
+      $this->throwForbiddenUnless(SecurityUtil::checkPermission('StrainID::', '::', ACCESS_ADMIN));
+    
+        $repository = $this->entityManager->getRepository('StrainID_Entity_strain');
+        $strain_table = StrainID_Util_View::generate_strain_table($this->view, $repository, true);
+        $this->view->assign('strain_table', $strain_table);
+    
+        // return main template
+        return $this->view->fetch('admin/main.tpl') . $retText;
+    }
     
 Most of the action takes place in generate_strain_table. This is a utility function that we will be using in a number of places. Therefore, it is factored out and added to the file at lib/StrainID/Util/View.php. We send it the view and the repository. The view is a representation of the view we are creating and handles generation of the html. The repository is our interface with the modules model (its data). Here is the code for that function.
 
 ::
 
-/**
- * generate strain table sends back a complete formatted list of
- * all of the strains that have been entered into the datbase
- * @return text The list of strains as html
- */
-public function generate_strain_table($view, $repository, $do_edit_links, $where="") {
-    $strains = $repository->selectWhere($where, 'name');
-    //Now assign this to a template variable
-    $view->assign('strains', $strains);
-    $view->assign('is_admin', $do_edit_links);
-    //create the strain table.
-    return $view->fetch('strainTbl.tpl');
-}
+    /**
+     * generate strain table sends back a complete formatted list of
+     * all of the strains that have been entered into the datbase
+     * @return text The list of strains as html
+     */
+    public function generate_strain_table($view, $repository, $do_edit_links, $where="") {
+        $strains = $repository->selectWhere($where, 'name');
+        //Now assign this to a template variable
+        $view->assign('strains', $strains);
+        $view->assign('is_admin', $do_edit_links);
+        //create the strain table.
+        return $view->fetch('strainTbl.tpl');
+    }
 
 Add the above code. The respository makes a call to the database selectWhere. If where is empty, as it is now, it sends back all the data. We then assign the resulting $strains variable to the template and also, $do_edit_links. This tells the template to render the names of the strains as links to edit forms with the data. We then return the rendered template, strainTbl.tpl. Create the strainTbl.tpl at templates/YourTheme/modules/StrainID/strainTbl.tpl and add the following code
 
 ::
 
-<div id="StrainID_body">
-    <table class="strain_list">
-        <tr class="strain_list_row_header">
-            <td>{gt text="Name"}</td>
-            <td>{gt text="Indole"}</td>
-            <td>{gt text="Methyl Red"}</td>
-            <td>{gt text="Vogues-Proskauer"}</td>
-            <td>{gt text="Citrate"}</td>
-            <td>{gt text="H<sub>2</sub>S"}</td>
-            <td>{gt text="Phenyl Alanine"}</td>
-            <td>{gt text="Lysine"}</td>
-            <td>{gt text="Ornithine"}</td>
-            <td>{gt text="Motility"}</td>
-            <td>{gt text="Lastose Fermentation"}</td>
-        <tr>
-    {foreach item='strain' from=$strains}
-        <tr class="strain_list_row">
-            {if $is_admin}
-            <td><a href="{modurl modname='StrainID' type='admin' func='edit' id=`$strain.id`}"><i>{$strain.name}</i></a></td>
-            {else}
-            <td><i>{$strain.name}</i></td>
-            {/if}
-            <td class="strain_cell">{$strain.indole}</td>
-            <td class="strain_cell">{$strain.methyl_red}</td>
-            <td class="strain_cell">{$strain.vogues_proskauer}</td>
-            <td class="strain_cell">{$strain.simmons_citrate}</td>
-            <td class="strain_cell">{$strain.h2s}</td>
-            <td class="strain_cell">{$strain.phenylalanine}</td>
-            <td class="strain_cell">{$strain.lysine}</td>
-            <td class="strain_cell">{$strain.ornithine}</td>
-            <td class="strain_cell">{$strain.motility}</td>
-            <td class="strain_cell">{$strain.lactose}</td>
-        <tr>
-    {/foreach}
-    </table>  
-</div>
+    <div id="StrainID_body">
+        <table class="strain_list">
+            <tr class="strain_list_row_header">
+                <td>{gt text="Name"}</td>
+                <td>{gt text="Indole"}</td>
+                <td>{gt text="Methyl Red"}</td>
+                <td>{gt text="Vogues-Proskauer"}</td>
+                <td>{gt text="Citrate"}</td>
+                <td>{gt text="H<sub>2</sub>S"}</td>
+                <td>{gt text="Phenyl Alanine"}</td>
+                <td>{gt text="Lysine"}</td>
+                <td>{gt text="Ornithine"}</td>
+                <td>{gt text="Motility"}</td>
+                <td>{gt text="Lastose Fermentation"}</td>
+            <tr>
+        {foreach item='strain' from=$strains}
+            <tr class="strain_list_row">
+                {if $is_admin}
+                <td><a href="{modurl modname='StrainID' type='admin' func='edit' id=`$strain.id`}"><i>{$strain.name}</i></a></td>
+                {else}
+                <td><i>{$strain.name}</i></td>
+                {/if}
+                <td class="strain_cell">{$strain.indole}</td>
+                <td class="strain_cell">{$strain.methyl_red}</td>
+                <td class="strain_cell">{$strain.vogues_proskauer}</td>
+                <td class="strain_cell">{$strain.simmons_citrate}</td>
+                <td class="strain_cell">{$strain.h2s}</td>
+                <td class="strain_cell">{$strain.phenylalanine}</td>
+                <td class="strain_cell">{$strain.lysine}</td>
+                <td class="strain_cell">{$strain.ornithine}</td>
+                <td class="strain_cell">{$strain.motility}</td>
+                <td class="strain_cell">{$strain.lactose}</td>
+            <tr>
+        {/foreach}
+        </table>  
+    </div>
 
 This page demonstrates how to create html and use what comes back from your repository calls. The $strains variable has an array of values that correspond to each row in the table. You simiply use a foreach call and then use dot notation to call each value in the row. Notice how the name of each value exactly matches what you called each value when you created your model in MOST?
 
@@ -108,7 +108,7 @@ Let's attack the default data first. If you open up Installer.php (lib/StrainID/
 
 ::
 
-/**
+    /**
      * Create the default data for StrainID.
      *
      * @param array $categoryRegistryIdsPerEntity List of category registry ids.
@@ -211,228 +211,228 @@ Another problem is that if you click on add a new strain to the database, it ope
 
 ::
 
-{* purpose of this template: build the Form to edit an instance of strain *}
-{include file='admin/header.tpl'}
-{pageaddvar name='javascript' value='modules/StrainID/javascript/StrainID_editFunctions.js'}
-{pageaddvar name='javascript' value='modules/StrainID/javascript/StrainID_validation.js'}
-{if $mode eq 'edit'}
-    {gt text='Edit strain' assign='templateTitle'}
-    {assign var='adminPageIcon' value='edit'}
-{elseif $mode eq 'create'}
-    {gt text='Create strain' assign='templateTitle'}
-    {assign var='adminPageIcon' value='new'}
-{else}
-    {gt text='Edit strain' assign='templateTitle'}
-    {assign var='adminPageIcon' value='edit'}
-{/if}
-<div class="strainid-strain strainid-edit">
-    {pagesetvar name='title' value=$templateTitle}
-    <div class="z-admin-content-pagetitle">
-        {icon type=$adminPageIcon size='small' alt=$templateTitle}
-        <h3>{$templateTitle}</h3>
-    </div>
-{form cssClass='z-form'}
-    {* add validation summary and a <div> element for styling the form *}
-    {strainidFormFrame}
-
-    {formsetinitialfocus inputId='name'}
-
-
-    <fieldset>
-        <legend>{gt text='Content'}</legend>
-        
-        <div class="z-formrow">
-            {formlabel for='name' __text='Name' mandatorysym='1'}
-            {formtextinput group='strain' id='name' mandatory=true readOnly=false __title='Enter the name of the strain' textMode='singleline' maxLength=255 cssClass='required' }
-            {strainidValidationError id='name' class='required'}
-        </div>
-        
-        <div class="z-formrow">
-            {formlabel for='indole' __text='Indole' mandatorysym='1'}
-            {formdropdownlist group='strain' id='indole' mandatory=true readOnly=false __title='Enter the indole reaction for the strain' items=$reaction cssClass='required'}
-            {strainidValidationError id='indole' class='required'}
-        </div>
-        
-        <div class="z-formrow">
-            {formlabel for='methyl_red' __text='Methyl_red' mandatorysym='1'}
-            {formdropdownlist group='strain' id='methyl_red' mandatory=true readOnly=false __title='Enter the methyl red reaction for the strain' items=$reaction cssClass='required'}
-            {strainidValidationError id='methyl_red' class='required'}
-        </div>
-        
-        <div class="z-formrow">
-            {formlabel for='vogues_proskauer' __text='Vogues_proskauer' mandatorysym='1'}
-            {formdropdownlist group='strain' id='vogues_proskauer' mandatory=true readOnly=false __title='Enter the vogues proskauer reaction for the strain' items=$reaction cssClass='required'}
-            {strainidValidationError id='vogues_proskauer' class='required'}
-        </div>
-        
-        <div class="z-formrow">
-            {formlabel for='simmons_citrate' __text='Simmons_citrate' mandatorysym='1'}
-            {formdropdownlist group='strain' id='simmons_citrate' mandatory=true readOnly=false __title='Enter the simmons citrate reaction for the strain' items=$reaction cssClass='required'}
-            {strainidValidationError id='simmons_citrate' class='required'}
-        </div>
-        
-        <div class="z-formrow">
-            {formlabel for='h2s' __text='H2s' mandatorysym='1'}
-            {formdropdownlist group='strain' id='h2s' mandatory=true readOnly=false __title='Enter the hydrogensulfide reaction for the strain' items=$reaction cssClass='required'}
-            {strainidValidationError id='h2s' class='required'}
-        </div>
-        
-        <div class="z-formrow">
-            {formlabel for='phenylalanine' __text='Phenylalanine' mandatorysym='1'}
-            {formdropdownlist group='strain' id='phenylalanine' mandatory=true readOnly=false __title='Enter the phenylalanine reaction for the strain' items=$reaction cssClass='required'}
-            {strainidValidationError id='phenylalanine' class='required'}
-        </div>
-        
-        <div class="z-formrow">
-            {formlabel for='lysine' __text='Lysine' mandatorysym='1'}
-            {formdropdownlist group='strain' id='lysine' mandatory=true readOnly=false __title='Enter the lysine reaction for the strain' items=$reaction cssClass='required'}
-            {strainidValidationError id='lysine' class='required'}
-        </div>
-        
-        <div class="z-formrow">
-            {formlabel for='ornithine' __text='Ornithine' mandatorysym='1'}
-            {formdropdownlist group='strain' id='ornithine' mandatory=true readOnly=false __title='Enter the ornithine reaction for the strain' items=$reaction cssClass='required'}
-            {strainidValidationError id='ornithine' class='required'}
-        </div>
-        
-        <div class="z-formrow">
-            {formlabel for='motility' __text='Motility' mandatorysym='1'}
-            {formdropdownlist group='strain' id='motility' mandatory=true readOnly=false __title='Enter the motility reaction for the strain' items=$reaction cssClass='required'}
-            {strainidValidationError id='motility' class='required'}
-        </div>
-        
-        <div class="z-formrow">
-            {formlabel for='lactose' __text='Lactose' mandatorysym='1'}
-            {formdropdownlist group='strain' id='lactose' mandatory=true readOnly=false __title='Enter the lactose reaction for the strain' items=$reaction cssClass='required'}
-            {strainidValidationError id='lactose' class='required'}
-        </div>
-    </fieldset>
-    
-    {if $mode ne 'create'}
-        {include file='admin/include_standardfields_edit.tpl' obj=$strain}
+    {* purpose of this template: build the Form to edit an instance of strain *}
+    {include file='admin/header.tpl'}
+    {pageaddvar name='javascript' value='modules/StrainID/javascript/StrainID_editFunctions.js'}
+    {pageaddvar name='javascript' value='modules/StrainID/javascript/StrainID_validation.js'}
+    {if $mode eq 'edit'}
+        {gt text='Edit strain' assign='templateTitle'}
+        {assign var='adminPageIcon' value='edit'}
+    {elseif $mode eq 'create'}
+        {gt text='Create strain' assign='templateTitle'}
+        {assign var='adminPageIcon' value='new'}
+    {else}
+        {gt text='Edit strain' assign='templateTitle'}
+        {assign var='adminPageIcon' value='edit'}
     {/if}
+    <div class="strainid-strain strainid-edit">
+        {pagesetvar name='title' value=$templateTitle}
+        <div class="z-admin-content-pagetitle">
+            {icon type=$adminPageIcon size='small' alt=$templateTitle}
+            <h3>{$templateTitle}</h3>
+        </div>
+    {form cssClass='z-form'}
+        {* add validation summary and a <div> element for styling the form *}
+        {strainidFormFrame}
     
-    {* include display hooks *}
-    {assign var='hookid' value=null}
-    {if $mode ne 'create'}
-        {assign var='hookid' value=$strain.id}
-    {/if}
-    {notifydisplayhooks eventname='strainid.ui_hooks.strains.form_edit' id=$hookId assign='hooks'}
-    {if is_array($hooks) && count($hooks)}
-        {foreach key='providerArea' item='hook' from=$hooks}
-            <fieldset>
-                {$hook}
-            </fieldset>
-        {/foreach}
-    {/if}
+        {formsetinitialfocus inputId='name'}
     
-    {* include return control *}
-    {if $mode eq 'create'}
+    
         <fieldset>
-            <legend>{gt text='Return control'}</legend>
+            <legend>{gt text='Content'}</legend>
+            
             <div class="z-formrow">
-                {formlabel for='repeatcreation' __text='Create another item after save'}
-                {formcheckbox group='strain' id='repeatcreation' readOnly=false}
+                {formlabel for='name' __text='Name' mandatorysym='1'}
+                {formtextinput group='strain' id='name' mandatory=true readOnly=false __title='Enter the name of the strain' textMode='singleline' maxLength=255 cssClass='required' }
+                {strainidValidationError id='name' class='required'}
+            </div>
+            
+            <div class="z-formrow">
+                {formlabel for='indole' __text='Indole' mandatorysym='1'}
+                {formdropdownlist group='strain' id='indole' mandatory=true readOnly=false __title='Enter the indole reaction for the strain' items=$reaction cssClass='required'}
+                {strainidValidationError id='indole' class='required'}
+            </div>
+            
+            <div class="z-formrow">
+                {formlabel for='methyl_red' __text='Methyl_red' mandatorysym='1'}
+                {formdropdownlist group='strain' id='methyl_red' mandatory=true readOnly=false __title='Enter the methyl red reaction for the strain' items=$reaction cssClass='required'}
+                {strainidValidationError id='methyl_red' class='required'}
+            </div>
+            
+            <div class="z-formrow">
+                {formlabel for='vogues_proskauer' __text='Vogues_proskauer' mandatorysym='1'}
+                {formdropdownlist group='strain' id='vogues_proskauer' mandatory=true readOnly=false __title='Enter the vogues proskauer reaction for the strain' items=$reaction cssClass='required'}
+                {strainidValidationError id='vogues_proskauer' class='required'}
+            </div>
+            
+            <div class="z-formrow">
+                {formlabel for='simmons_citrate' __text='Simmons_citrate' mandatorysym='1'}
+                {formdropdownlist group='strain' id='simmons_citrate' mandatory=true readOnly=false __title='Enter the simmons citrate reaction for the strain' items=$reaction cssClass='required'}
+                {strainidValidationError id='simmons_citrate' class='required'}
+            </div>
+            
+            <div class="z-formrow">
+                {formlabel for='h2s' __text='H2s' mandatorysym='1'}
+                {formdropdownlist group='strain' id='h2s' mandatory=true readOnly=false __title='Enter the hydrogensulfide reaction for the strain' items=$reaction cssClass='required'}
+                {strainidValidationError id='h2s' class='required'}
+            </div>
+            
+            <div class="z-formrow">
+                {formlabel for='phenylalanine' __text='Phenylalanine' mandatorysym='1'}
+                {formdropdownlist group='strain' id='phenylalanine' mandatory=true readOnly=false __title='Enter the phenylalanine reaction for the strain' items=$reaction cssClass='required'}
+                {strainidValidationError id='phenylalanine' class='required'}
+            </div>
+            
+            <div class="z-formrow">
+                {formlabel for='lysine' __text='Lysine' mandatorysym='1'}
+                {formdropdownlist group='strain' id='lysine' mandatory=true readOnly=false __title='Enter the lysine reaction for the strain' items=$reaction cssClass='required'}
+                {strainidValidationError id='lysine' class='required'}
+            </div>
+            
+            <div class="z-formrow">
+                {formlabel for='ornithine' __text='Ornithine' mandatorysym='1'}
+                {formdropdownlist group='strain' id='ornithine' mandatory=true readOnly=false __title='Enter the ornithine reaction for the strain' items=$reaction cssClass='required'}
+                {strainidValidationError id='ornithine' class='required'}
+            </div>
+            
+            <div class="z-formrow">
+                {formlabel for='motility' __text='Motility' mandatorysym='1'}
+                {formdropdownlist group='strain' id='motility' mandatory=true readOnly=false __title='Enter the motility reaction for the strain' items=$reaction cssClass='required'}
+                {strainidValidationError id='motility' class='required'}
+            </div>
+            
+            <div class="z-formrow">
+                {formlabel for='lactose' __text='Lactose' mandatorysym='1'}
+                {formdropdownlist group='strain' id='lactose' mandatory=true readOnly=false __title='Enter the lactose reaction for the strain' items=$reaction cssClass='required'}
+                {strainidValidationError id='lactose' class='required'}
             </div>
         </fieldset>
-    {/if}
-    
-    {* include possible submit actions *}
-    <div class="z-buttons z-formbuttons">
-    {foreach item='action' from=$actions}
-        {assign var='actionIdCapital' value=$action.id|@ucwords}
-        {gt text=$action.title assign='actionTitle'}
-        {*gt text=$action.description assign='actionDescription'*}{* TODO: formbutton could support title attributes *}
-        {if $action.id eq 'delete'}
-            {gt text='Really delete this strain?' assign='deleteConfirmMsg'}
-            {formbutton id="btn`$actionIdCapital`" commandName=$action.id text=$actionTitle class=$action.buttonClass confirmMessage=$deleteConfirmMsg}
-        {else}
-            {formbutton id="btn`$actionIdCapital`" commandName=$action.id text=$actionTitle class=$action.buttonClass}
+        
+        {if $mode ne 'create'}
+            {include file='admin/include_standardfields_edit.tpl' obj=$strain}
         {/if}
-    {/foreach}
-        {formbutton id='btnCancel' commandName='cancel' __text='Cancel' class='z-bt-cancel'}
+        
+        {* include display hooks *}
+        {assign var='hookid' value=null}
+        {if $mode ne 'create'}
+            {assign var='hookid' value=$strain.id}
+        {/if}
+        {notifydisplayhooks eventname='strainid.ui_hooks.strains.form_edit' id=$hookId assign='hooks'}
+        {if is_array($hooks) && count($hooks)}
+            {foreach key='providerArea' item='hook' from=$hooks}
+                <fieldset>
+                    {$hook}
+                </fieldset>
+            {/foreach}
+        {/if}
+        
+        {* include return control *}
+        {if $mode eq 'create'}
+            <fieldset>
+                <legend>{gt text='Return control'}</legend>
+                <div class="z-formrow">
+                    {formlabel for='repeatcreation' __text='Create another item after save'}
+                    {formcheckbox group='strain' id='repeatcreation' readOnly=false}
+                </div>
+            </fieldset>
+        {/if}
+        
+        {* include possible submit actions *}
+        <div class="z-buttons z-formbuttons">
+        {foreach item='action' from=$actions}
+            {assign var='actionIdCapital' value=$action.id|@ucwords}
+            {gt text=$action.title assign='actionTitle'}
+            {*gt text=$action.description assign='actionDescription'*}{* TODO: formbutton could support title attributes *}
+            {if $action.id eq 'delete'}
+                {gt text='Really delete this strain?' assign='deleteConfirmMsg'}
+                {formbutton id="btn`$actionIdCapital`" commandName=$action.id text=$actionTitle class=$action.buttonClass confirmMessage=$deleteConfirmMsg}
+            {else}
+                {formbutton id="btn`$actionIdCapital`" commandName=$action.id text=$actionTitle class=$action.buttonClass}
+            {/if}
+        {/foreach}
+            {formbutton id='btnCancel' commandName='cancel' __text='Cancel' class='z-bt-cancel'}
+        </div>
+        {/strainidFormFrame}
+    {/form}
+    
     </div>
-    {/strainidFormFrame}
-{/form}
-
-</div>
-{include file='admin/footer.tpl'}
-
-{icon type='edit' size='extrasmall' assign='editImageArray'}
-{icon type='delete' size='extrasmall' assign='deleteImageArray'}
-
-
-<script type="text/javascript">
-/* <![CDATA[ */
-
-    var formButtons, formValidator;
-
-    function handleFormButton (event) {
-        var result = formValidator.validate();
-        if (!result) {
-            // validation error, abort form submit
-            Event.stop(event);
-        } else {
-            // hide form buttons to prevent double submits by accident
-            formButtons.each(function (btn) {
-                btn.addClassName('z-hide');
-            });
-        }
-
-        return result;
-    }
-
-    document.observe('dom:loaded', function() {
-
-        strainAddCommonValidationRules('strain', '{{if $mode ne 'create'}}{{$strain.id}}{{/if}}');
-        {{* observe validation on button events instead of form submit to exclude the cancel command *}}
-        formValidator = new Validation('{{$__formid}}', {onSubmit: false, immediate: true, focusOnError: false});
-        {{if $mode ne 'create'}}
+    {include file='admin/footer.tpl'}
+    
+    {icon type='edit' size='extrasmall' assign='editImageArray'}
+    {icon type='delete' size='extrasmall' assign='deleteImageArray'}
+    
+    
+    <script type="text/javascript">
+    /* <![CDATA[ */
+    
+        var formButtons, formValidator;
+    
+        function handleFormButton (event) {
             var result = formValidator.validate();
-        {{/if}}
-
-        formButtons = $('{{$__formid}}').select('div.z-formbuttons input');
-
-        formButtons.each(function (elem) {
-            if (elem.id != 'btnCancel') {
-                elem.observe('click', handleFormButton);
+            if (!result) {
+                // validation error, abort form submit
+                Event.stop(event);
+            } else {
+                // hide form buttons to prevent double submits by accident
+                formButtons.each(function (btn) {
+                    btn.addClassName('z-hide');
+                });
             }
+    
+            return result;
+        }
+    
+        document.observe('dom:loaded', function() {
+    
+            strainAddCommonValidationRules('strain', '{{if $mode ne 'create'}}{{$strain.id}}{{/if}}');
+            {{* observe validation on button events instead of form submit to exclude the cancel command *}}
+            formValidator = new Validation('{{$__formid}}', {onSubmit: false, immediate: true, focusOnError: false});
+            {{if $mode ne 'create'}}
+                var result = formValidator.validate();
+            {{/if}}
+    
+            formButtons = $('{{$__formid}}').select('div.z-formbuttons input');
+    
+            formButtons.each(function (elem) {
+                if (elem.id != 'btnCancel') {
+                    elem.observe('click', handleFormButton);
+                }
+            });
+    
+            Zikula.UI.Tooltips($$('.strainidFormTooltips'));
         });
-
-        Zikula.UI.Tooltips($$('.strainidFormTooltips'));
-    });
-
-/* ]]> */
-</script>
+    
+    /* ]]> */
+    </script>
 
 This is a long code entry, but note that much of this code is borrowed from the base template generated by Most, but we are changing 
 
 ::
 
-{formtextinput group='strain' id='indole' mandatory=true readOnly=false __title='Enter the indole of the strain' textMode='singleline' maxLength=1 cssClass='required'}
+    {formtextinput group='strain' id='indole' mandatory=true readOnly=false __title='Enter the indole of the strain' textMode='singleline' maxLength=1 cssClass='required'}
 
 to
 
 ::
 
-{formdropdownlist group='strain' id='indole' mandatory=true readOnly=false __title='indole' items=$reaction cssClass='required'}
+    {formdropdownlist group='strain' id='indole' mandatory=true readOnly=false __title='indole' items=$reaction cssClass='required'}
 
 We do need to make one more modification to get this to work. We need to add the $reaction variable. Code needs to be overridden to do this. We will be overriding the inilization of this form, but taking advantage of the parent class. Open up the file lib/StrainID/Form/Handler/Admin/Edit.php and add the following code to the class.
 
 ::
-public function initialize(Zikula_Form_View $view) {
-    $result = parent::initialize($view);
-    //everything was fine with the parent
-    if ($result) {
-        $items = array(array('text' => '+', 'value' => '+'),
-            array('text' => '-', 'value' => '-'),
-            array('text' => 'v', 'value' => 'v'),
-            array('text' => 'u', 'value' => 'u'));
-
-        $view->assign('reaction', $items);  // Supply items
+    public function initialize(Zikula_Form_View $view) {
+        $result = parent::initialize($view);
+        //everything was fine with the parent
+        if ($result) {
+            $items = array(array('text' => '+', 'value' => '+'),
+                array('text' => '-', 'value' => '-'),
+                array('text' => 'v', 'value' => 'v'),
+                array('text' => 'u', 'value' => 'u'));
+    
+            $view->assign('reaction', $items);  // Supply items
+        }
+        return $result;
     }
-    return $result;
-}
 
 First we take advantage of another feature of object programming. We call the parent class and have it do all its initilization, and then add our little amount of custom programming. In this case we create the options for the drop down list by creating an array. We then assign this as the reaction variable in our few template. 
 
