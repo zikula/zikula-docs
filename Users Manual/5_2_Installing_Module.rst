@@ -1,5 +1,5 @@
-.. _install https://github.com/paustian/zikula-docs/blob/master/Users%20Manual/2_1_installation.rst
-.. _Previously https://github.com/paustian/zikula-docs/blob/master/Users%20Manual/5_1_Module_Programming.rst
+.. _install: https://github.com/paustian/zikula-docs/blob/master/Users%20Manual/2_1_installation.rst
+.. _Previously: https://github.com/paustian/zikula-docs/blob/master/Users%20Manual/5_1_Module_Programming.rst
 
 Installing the module
 ---------------------
