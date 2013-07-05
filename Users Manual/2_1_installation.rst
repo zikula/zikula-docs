@@ -103,6 +103,7 @@ Installing Zikula at an ISP
 ---------------------------
 
 The process of setting up Zikula at an ISP is very similar to setting it up on your local compupter. It is impossible to give specific directions on installing Zikula at your internet service provider, but here are some general tips. 
+
 * When choosing an ISP, make sure they meet the minimum system requirements for Zikula. (See the top of this page)
 * You must have the ability to create a MySQL database, and a MySQL user that has permission to read and write the newly created database. If you administer your site using CPanel or some other web based gateway, you will mostly likely be able to create a database, by choosing MySQL Databases in the databases section of your admin web page. To create users and permissions, you will normally have phpMyAdmin access and can create a database user with the correct access to your database using methods very similar to what you did to setup your local site.
 * You also need to be able to modfiy the permissions on folders in some fashion. Most ISPs will have a file manager web application that will allow you to modify the permissions of folders and files. 
