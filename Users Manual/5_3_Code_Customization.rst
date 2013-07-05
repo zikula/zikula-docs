@@ -12,7 +12,7 @@ The template you want to override is at templates/admin/main.tpl. There are tons
 - user
 - include_pdfheader.tpl
 
-It is logical to place admin templates in the admin folder, so I looked there. You can verify that you have the right template by opening it, typing something in it and then checking in your browser. Now we do not want to edit this template. If we do, then when we make changes in MOST and drop our new module in, it will overwrite our template. You can place overriding templates in either your theme or the config folder. For this example, we will drop them in the theme we are using. Create a folder inside the template folder of your theme called modules. Inside that folder create another folder called StrainID. The path should be themes/YourTheme/template/Modules/StrainID/. Now you have to create a folder hierarchy identical to the one inside the StrainID module. For this case we need to create an admin folder, and drop the main.tpl in there. Place the following code in this main.tpl.
+It is logical to place admin templates in the admin folder, so look there. You can verify that you have the right template by opening it, typing something in it and then checking in your browser. Now we do not want to edit this template. If we do, then when we make changes in MOST and drop our new module in, it will overwrite our template. You can place overriding templates in either your theme or the config folder. For this example, we will drop them in the theme we are using. Create a folder inside the template folder of your theme called modules. Inside that folder create another folder called StrainID. The path should be themes/YourTheme/template/modules/StrainID/. Now you have to create a folder hierarchy identical to the one inside the StrainID module. For this case we need to create an admin folder, and drop the main.tpl in there. Place the following code in this main.tpl file.
 
 ::
 
@@ -23,7 +23,7 @@ It is logical to place admin templates in the admin folder, so I looked there. Y
     {include file='admin/footer.tpl'}
 
 
-This code generates a link to the edit template. modurl is a function that generates the link if you specifcy the module, its type and the function. Note also the use of gt. This is the getText utility that allows the formation of translations. All text templates should be wrapped in these calls to allow easy translation to other languages. 
+This code generates a link to the edit template. modurl is a function that generates the link if you specify the module, its type and the function. Note also the use of gt. This is the getText utility that allows the formation of translations. All text templates should be wrapped in these calls to allow easy translation to other languages. 
 
 You will also notice the $strain_table variable. We need to generate this table and add it to the template. To do this, we need to locate the file that generates the StrainID-admin-main page. This is located in StrainID/lib/Controller/Base/Admin.php. However, we do not want to modify this base class, we instead override the concrete class that is located at StrainID/lib/Controller/Admin.php. So open that file.
 You will notice that this file contains a class StrainID_Controller_Admin that extends StrainID_Controller_Admin_Base, its base class. Any function you write in here will override a function in the base class. So we need to write a main function. Here is the code to add to the base class.
@@ -31,14 +31,16 @@ You will notice that this file contains a class StrainID_Controller_Admin that e
 ::
 
     public function main($args) {
-      $this->throwForbiddenUnless(SecurityUtil::checkPermission('StrainID::', '::', ACCESS_ADMIN));
-    
+        $this->throwForbiddenUnless(SecurityUtil::checkPermission('StrainID::', '::', ACCESS_ADMIN));
+        // set caching id
+        $this->view->setCacheId('main');
+        
         $repository = $this->entityManager->getRepository('StrainID_Entity_strain');
         $strain_table = StrainID_Util_View::generate_strain_table($this->view, $repository, true);
         $this->view->assign('strain_table', $strain_table);
-    
+
         // return main template
-        return $this->view->fetch('admin/main.tpl') . $retText;
+        return $this->view->fetch('admin/main.tpl');
     }
     
 Most of the action takes place in generate_strain_table. This is a utility function that we will be using in a number of places. Therefore, it is factored out and added to the file at lib/StrainID/Util/View.php. We send it the view and the repository. The view is a representation of the view we are creating and handles generation of the html. The repository is our interface with the modules model (its data). Here is the code for that function.
@@ -59,7 +61,7 @@ Most of the action takes place in generate_strain_table. This is a utility funct
         return $view->fetch('strainTbl.tpl');
     }
 
-Add the above code. The respository makes a call to the database selectWhere. If where is empty, as it is now, it sends back all the data. We then assign the resulting $strains variable to the template and also, $do_edit_links. This tells the template to render the names of the strains as links to edit forms with the data. We then return the rendered template, strainTbl.tpl. Create the strainTbl.tpl at templates/YourTheme/modules/StrainID/strainTbl.tpl and add the following code
+Add the above code. The repository makes a call to the database selectWhere. If where is empty, as it is now, it sends back all the data. We then assign the resulting $strains variable to the template and also, $do_edit_links. This tells the template to render the names of the strains as links to edit forms with the data. We then return the rendered template, strainTbl.tpl. Create the strainTbl.tpl at templates/YourTheme/modules/StrainID/strainTbl.tpl and add the following code
 
 ::
 
@@ -100,11 +102,11 @@ Add the above code. The respository makes a call to the database selectWhere. If
         </table>  
     </div>
 
-This page demonstrates how to create html and use what comes back from your repository calls. The $strains variable has an array of values that correspond to each row in the table. You simiply use a foreach call and then use dot notation to call each value in the row. Notice how the name of each value exactly matches what you called each value when you created your model in MOST?
+This page demonstrates how to create html and use what comes back from your repository calls. The $strains variable has an array of values that correspond to each row in the table. You simply use a foreach call and then use dot notation to call each value in the row. Notice how the name of each value exactly matches what you called each value when you created your model in MOST?
 
-Now if you load the main admin page, you will see a link to the edit page and then a table below that that lists every strain in the database. There are two things we need to fix with the look of the admin page. One, default values have been entered into the database, and these really don't mean anything. We should add some better test results. Second, the results of the tests should be +/-/u/v, not 1. 
+Now if you load the main admin page, you will see a link to the edit page and then a table below that that lists every strain in the database. There are two things we need to fix with the look of the admin page. One, default values have been entered into the database, and these really don't mean anything. We should add some better test results. Second, the results of the tests should be +/-/u/v, not 1,2,3,4,5. 
 
-Let's attack the default data first. If you open up Installer.php (lib/StrainID/Base/Installer.php) you will find a called in the install function to createDefaultData. Further down the file is the create default data class. We again need to override this, but don't do it here. As before, find the concrete class at lib/StrainID/Installer.php and past the function into this class. Add the following code:
+Let's attack the default data first. If you open up Installer.php (lib/StrainID/Base/Installer.php) you will find a called in the install function to createDefaultData. Further down the file is the create default data class. We again need to override this, but don't do it here. As before, find the concrete class at lib/StrainID/Installer.php and past the createDefaultData function into this class. Add the following code:
 
 ::
 
@@ -205,9 +207,9 @@ Let's attack the default data first. If you open up Installer.php (lib/StrainID/
         }
     }
 
-You will notice that creation of the data is very straightforward. This gets added when the module is installed. So we will need to uninstall the module in the extentions module. Click on the Systems Tab in the admin area, then on the extensions module. Scroll down to the StrainID module in the list, click on the inactivate icon and then after it is inactive, click on uninstall. It will warn you that you will lose all data. Click on OK. Finally reinstall the module by clicking on install. If you then go to the admin page for StrainID, you wil now see a table of our newly entereed strains. 
+You will notice that creation of the data is very straightforward. This gets added when the module is installed. So we will need to uninstall the module in the extensions module. Click on the Systems Tab in the admin area, then on the extensions module. Scroll down to the StrainID module in the list, click on the inactivate icon and then after it is inactive, click on uninstall. It will warn you that you will lose all data. Click on OK. Finally reinstall the module by clicking on install. If you then go to the admin page for StrainID, you wil now see a table of our newly entered default strains. 
 
-Another problem is that if you click on add a new strain to the database, it opens the edit page. Test it out. You will notice that it takes you to an already generated form. If you click out of a text area on the form without entering anything, it warns you that this is a required field. Again, MOST has written much of the editing and validation code for you. It has also made it pretty darn fancy with javascript and immediate feedback. However, the strain test values should again be restricted to +/-/u/v. It would be better to have a drop down menu here instead of making sure we get +, -, u, or v after the fact. Let's edit that template and add some code to the class that generates it. You will be overriding the template at StrainID/tempates/admin/strain/edit.tpl and placing the file at theme/YourTheme/templates/modules/StrainID/admin/strain/edit.tpl. Here is the code to add to the edit.tpl file. 
+If you click on add a new strain to the database, it opens the edit page. Test it out. You will notice that it takes you to an already generated form. If you click out of a text area on the form without entering anything, it warns you that this is a required field. Again, MOST has written much of the editing and validation code for you. It has also made it pretty darn fancy with javascript and immediate feedback. However, the strain test values should again be restricted to +/-/u/v. It would be better to have a drop down menu here instead of making sure we get +, -, u, or v after the fact. Let's edit that template and add some code to the class that generates it. You will be overriding the template at StrainID/templates/admin/strain/edit.tpl and placing the file at theme/YourTheme/templates/modules/StrainID/admin/strain/edit.tpl. Here is the code to add to the edit.tpl file. 
 
 ::
 
@@ -405,7 +407,7 @@ Another problem is that if you click on add a new strain to the database, it ope
     /* ]]> */
     </script>
 
-This is a long code entry, but note that much of this code is borrowed from the base template generated by Most, but we are changing 
+This is a long code entry, but note that much of this code is borrowed from the base template generated by MOST, but we simply changing 
 
 ::
 
@@ -417,9 +419,10 @@ to
 
     {formdropdownlist group='strain' id='indole' mandatory=true readOnly=false __title='indole' items=$reaction cssClass='required'}
 
-We do need to make one more modification to get this to work. We need to add the $reaction variable. Code needs to be overridden to do this. We will be overriding the inilization of this form, but taking advantage of the parent class. Open up the file lib/StrainID/Form/Handler/Admin/Edit.php and add the following code to the class.
+This is done for each item we want to restrict to a drop down list. We do need to make one more modification to get this to work. We need to add the $reaction variable. The $reaction variable contains the menu choices for our drop down list.  Code needs to be overridden to do this. We will be overriding the inilization of this form. Open up the file lib/StrainID/Form/Handler/Admin/Edit.php and add the following code to the class.
 
 ::
+    
     public function initialize(Zikula_Form_View $view) {
         $result = parent::initialize($view);
         //everything was fine with the parent
@@ -434,6 +437,6 @@ We do need to make one more modification to get this to work. We need to add the
         return $result;
     }
 
-First we take advantage of another feature of object programming. We call the parent class and have it do all its initilization, and then add our little amount of custom programming. In this case we create the options for the drop down list by creating an array. We then assign this as the reaction variable in our few template. 
+First we take advantage of another feature of object programming. We call the parent class and have it do all its initilization, and then add our little amount of custom programming. In this case we create the options for the drop down list by creating an array. We then assign this as the reaction variable in our few template. Whether you call the parent class depends upon what it does, and how differently you need to handle the action. In most cases you should try to use the parent class whenever possible.
 
 Save this file and again load StrainID-admin-edit. You will now see a form with drop down lists. The Form functionality built into Zikula is very powerful, taking care of validation and providing all sorts of utility functions to make dealing with user input easier. The admin area is now finished. In the next section we finish the module by modifying the main user page and then providing the search function.
