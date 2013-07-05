@@ -1,4 +1,4 @@
-If you want to download the finished module and follow along, this can be found as a `zip file <http://inst.bact.wisc.edu/StrainID_example.zip>`. Let's begin by adding a link to the main admin page that takes us to the edit page. 
+Modifying the code for a module can seem daunting, but once you understand how to look for things, it actually is pretty easy. The goal of this tutorial is to get you stared down this road. Let's begin by adding a link to the main admin page that takes us to the edit page. 
 
 The template you want to override is at templates/admin/main.tpl. There are tons of templates, how did I know that? If you look in the templates folder, you will find these folders.
 
