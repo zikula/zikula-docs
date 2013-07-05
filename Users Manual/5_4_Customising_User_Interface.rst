@@ -173,7 +173,7 @@ To create it, the text from the edit.tpl was copied and then minor modifications
         return $view->execute('user/search.tpl', new StrainID_Form_Handler_User_Search());
     }
     
-The search function checks permission again and then turns over control to a new Form Handler class we will write from scratch. Note that we are calling a new type of renderer using FormUtil?. If you are familiar with the smarty rendering templates of Zikula, this may be different to you. We send along the Controller ($this->name) which is User.php, and the module ($this), which is StrianID?. We then tell the form to execute listing the template to use, the one we just created, and the Form Handler class StrainID_Form_Hanlder_User_Search() that will handle user interaction and processing of the form. We will create that class next. 
+The search function checks permission again and then turns over control to a new Form Handler class we will write from scratch. Note that we are calling a new type of renderer using FormUtil. If you are familiar with the smarty rendering templates of Zikula, this may be different to you. We send along the Controller ($this->name) which is User.php, and the module ($this), which is StrainID. We then tell the form to execute listing the template to use, the one we just created, and the Form Handler class StrainID_Form_Hanlder_User_Search() that will handle user interaction and processing of the form. We will create that class next. 
 
 If we were staying true to form to the way MOST does things, we would probably create a separate file and place it in the Form Handler User folder. I find it easier to code, and to follow, to have my simple form classes in with the code that is using them. So inside the file modules/StrainID/lib/StrainID/Controller/User.php, but outside the StrainID_Controller_User class, place the following code.
 
@@ -296,11 +296,13 @@ The function handleCommand is where all the action is. This routine is called wh
 That would be a massive pain to build by hand. To make this easier, we are going to create an associative array in our handleCommand function that has each choice that we want in the where statement and then use programming to create the rest. As you can see in the code, each item in the array is a string with the acceptable choices separated by a | character. For example if we are searching for (+) indole results, the where array would be:
 
 ::
+    
     $where['indole'] = '+|u|v'
 
-So in handleCommand we build a where array with all the choices for each test built into it. This then gets passed to selectSearchAnd. This is a function that we create to help build the where clause. Since we are using object-oriented programming and classes we can simple override the Doctrine class. In fact, MOST has already done that for us. Open up modules/StrainID/lib/StrainID/Entity/Respository/Strain.php and you will find a class all ready for you to override functions. Place the following code inside the class StrainID_Entity_Repository_Strain
+So in handleCommand we build a where array with all the choices for each test built into it. This then gets passed to selectSearchAnd. This is a function that we create to help build the where clause. Since we are using object-oriented programming and classes we can simple override the Doctrine class. In fact, MOST has already done that for us. Open up modules/StrainID/lib/StrainID/Entity/Repository/Strain.php and you will find a class all ready for you to override functions. Place the following code inside the class StrainID_Entity_Repository_Strain
 
 ::
+    
     public function selectSearchAnd($items_to_search, $orderBy = '', $useJoins = true)
     {
         $where = '';    
@@ -319,11 +321,13 @@ So in handleCommand we build a where array with all the choices for each test bu
 The function first builds the where statement by walking through the provided associative array. It then explodes the value string and puts each into a multiple OR statement. For example, the first $whereSub when finished with the inside foreach loop would read.
 
 ::
+    
     tbl.indole LIKE '%-%' OR tbl.indole LIKE '%u%' OR tbl.indole LIKE '%v%'
 
 Each of these multiply OR statements is then chained together with an AND to give a finished where clause as shown above. We then call the Base class function selectWhere. This will return all strains that match the test results we have specified as an array. Returning to our handleCommand function, we generate our strain table.
 
 ::
+    
     //Now assign this to a template variable
     $view->assign('strains', $strains);
     //create the strain table.
