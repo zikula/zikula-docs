@@ -16,13 +16,12 @@ It is logical to place admin templates in the admin folder, so I looked there. Y
 
 ::
 
-{
-{* purpose of this template: strains main view in admin area *}
-{include file='admin/header.tpl'}
-\<p><a href="{modurl modname='StrainID' type='admin' func='edit' }">{gt text="Enter a new strain in the database."}</a></p>
-{$strain_table}
-{include file='admin/footer.tpl'}
-}
+    {* purpose of this template: strains main view in admin area *}
+    {include file='admin/header.tpl'}
+    \<p><a href="{modurl modname='StrainID' type='admin' func='edit' }">{gt text="Enter a new strain in the database."}</a></p>
+    {$strain_table}
+    {include file='admin/footer.tpl'}
+
 
 This code generates a link to the edit template. modurl is a function that generates the link if you specifcy the module, its type and the function. Note also the use of gt. This is the getText utility that allows the formation of translations. All text templates should be wrapped in these calls to allow easy translation to other languages. 
 
