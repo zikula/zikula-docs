@@ -18,7 +18,7 @@ It is logical to place admin templates in the admin folder, so I looked there. Y
 
 {* purpose of this template: strains main view in admin area *}
 {include file='admin/header.tpl'}
-<p><a href="{modurl modname='StrainID' type='admin' func='edit' }">{gt text="Enter a new strain in the database."}</a></p>
+\<p><a href="{modurl modname='StrainID' type='admin' func='edit' }">{gt text="Enter a new strain in the database."}</a></p>
 {$strain_table}
 {include file='admin/footer.tpl'}
 
