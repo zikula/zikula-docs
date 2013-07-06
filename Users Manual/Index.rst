@@ -5,16 +5,12 @@ Table of Contents
 Chapter 1 Introduction_ 
 Chapter 2 Installation and Configuration
 
-::    
-    
     Section 2.1 Installation_
     Seciton 2.2 Configuration_
     Section 2.3 Adding Content_
     Seciton 2.4 Users_ and Groups
     
 Chapter 5 Module Programming
-
-::
 
     Section 5.1 Using Most to make a Module_
     Section 5.2 Install_ and test your Module
