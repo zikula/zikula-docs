@@ -20,13 +20,13 @@ Chapter 4 Zikula Cookbook
     
 Chapter 5 Module Programming
 
-    Section 5.1 Using Most to make a Module_
+    Section 6.1 Using Most to make a Module_
     
-    Section 5.2 Install_ and test your Module
+    Section 6.2 Install_ and test your Module
     
-    Section 5.2 Creating the Admin_ Interface
+    Section 6.2 Creating the Admin_ Interface
     
-    Section 5.3 Creating the User_ Interface
+    Section 6.3 Creating the User_ Interface
     
 
 .. _Introduction: 1_1_Introduction.rst
@@ -34,7 +34,7 @@ Chapter 5 Module Programming
 .. _Configuration: 2_2_configuration.rst
 .. _Content: 2_3_content.rst
 .. _Users: 2_4_Users_And_Groups.rst
-.. _Module: 5_1_Module_Programming.rst
-.. _Install: 5_2_Installing_Module.rst
-.. _Admin: 5_3_Code_Customization.rst
-.. _User: 5_4_Customising_User_Interface.rst
+.. _Module: 6_1_Module_Programming.rst
+.. _Install: 6_2_Installing_Module.rst
+.. _Admin: 6_3_Code_Customization.rst
+.. _User: 6_4_Customising_User_Interface.rst
