@@ -13,6 +13,10 @@ Chapter 2 Installation and Configuration
     Section 2.3 Adding Content_
     
     Seciton 2.4 Users_ and Groups
+Chapter 3 Cusotmizing Theme
+
+Chapter 4 Zikula Cookbook
+    Section 2.1 Security Center
     
 Chapter 5 Module Programming
 

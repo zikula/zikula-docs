@@ -96,7 +96,16 @@ After you add content for a while, you may notice that some of the tags you try 
 
 1. Click on the Security Tab and then Click on Security center
 #. Click on Allowed HTML settings.
-#. A list of HTML tags will be shown. From here you can modify what tags those using forms on your site can use. When you have the settings as you like, click on Save
+#. A list of HTML tags will be shown. From here you can modify what tags those using forms on your site can use. When you have the settings as you like, click on Save.
+
+Blocks
+------
+
+Blocks are the menus, polls and messages round the edge of the main content when you first view your site. There are many different blocks, and most modules have their own blocks provided in their distributions. There are three default block areas on most themes, left blocks, right blocks and center blocks. Whether all three of these areas are available on every page will depend on the theme's layout and templates. Certain themes may have additional block positions through the Xanthia theme engine provided in the distribution.
+
+To administer blocks, and see the different types available to you, click the administration link in the main menu and then choose blocks. There are many different types of blocks, and each has a different use. As you install third party modules, more blocks will appear in this menu for you to use, if you wish.
+
+
 
 
 .. _News: https://github.com/zikula-modules/News
