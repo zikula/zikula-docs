@@ -43,7 +43,7 @@ This data can naturally be stored in a single table.
 +------------+----------------------------+----------------+-----------------+
 |  Item Name | Description	              |      Type      |    Size         |
 +------------+----------------------------+----------------+-----------------+
-|  id        |id for the item, primary key|    integer     |    Large        |
+|  id        | id for the item, primary key |    integer     |    Large        |
 +------------+----------------------------+----------------+-----------------+
 |  name      | name of the species	      |     string	   |     255         |
 +------------+----------------------------+----------------+-----------------+
