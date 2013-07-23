@@ -41,7 +41,7 @@ The model for the StrainID2 module will contain the name of the strain, and then
 
 This data can naturally be stored in a single table.
 +------------+----------------------------+----------------+-----------------+
-|Item Name	 | Description	              |      Type      |    Size         |
+|  Item Name | Description	              |      Type      |    Size         |
 +------------+----------------------------+----------------+-----------------+
 |  id        |id for the item, primary key|    integer     |    Large        |
 +------------+----------------------------+----------------+-----------------+
@@ -53,7 +53,7 @@ This data can naturally be stored in a single table.
 +------------+----------------------------+----------------+-----------------+
 |     vp     | vogues proskauer test      |     string     |      1          |
 +------------+----------------------------+----------------+-----------------+
-|sim citrate |  simmon's citrate test     |     string     |      1          |
+| sim citrate|  simmon's citrate test     |     string     |      1          |
 +------------+----------------------------+----------------+-----------------+
 |    H2S     |prod. of hydrogen sulfide   |     string     |      1          |
 +------------+----------------------------+----------------+-----------------+
