@@ -40,10 +40,11 @@ A very important step is to design your module conceptually. Too often new progr
 The model for the StrainID2 module will contain the name of the strain, and then the reaction for each test. We will also add a id number and make it the primary key. This will make it easy to identify each unique entry in the table. In summary, there will be an id for each strain (integer), a name for the strain (two words, genus and species), and then the results for each test, 10 tests in all, the results of each will be represented with a + (positive), - (negative), v (varies between strains) or u (unknown). Each of these can be represented by a single character. Table 1 shows the layout of the data.
 
 This data can naturally be stored in a single table.
+
 +------------+----------------------------+----------------+-----------------+
 |  Item Name | Description	              |      Type      |    Size         |
 +------------+----------------------------+----------------+-----------------+
-|  id        | id for the item, primary key |    integer     |    Large        |
+|  id        | id for the item, primary key |    integer   |      Large      |
 +------------+----------------------------+----------------+-----------------+
 |  name      | name of the species	      |     string	   |     255         |
 +------------+----------------------------+----------------+-----------------+
