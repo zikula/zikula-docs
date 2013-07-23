@@ -57,7 +57,7 @@ This data can naturally be stored in a single table.
 +------------+----------------------------+----------------+-----------------+
 |    H2S     |prod. of hydrogen sulfide   |     string     |      1          |
 +------------+----------------------------+----------------+-----------------+
-|phenylalanine|deamination of phenyl alanine|   string     |      1          |
+|   PA       |deamination of phenyl alan. |    string      |      1          |
 +------------+----------------------------+----------------+-----------------+
 |   lysine   | lysine decarboxylation     |     string     |      1          |
 +------------+----------------------------+----------------+-----------------+
