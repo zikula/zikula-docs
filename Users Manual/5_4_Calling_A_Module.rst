@@ -36,23 +36,26 @@ Zikula would look in the News module use the file lib/News/Controller/User.php a
 type
 ----
 
-The type argument tells Zikula which file to find the function required. In effect you tell Zikula to include the file User.php (in the module's own folder determined from the module argument above. If not specified, defaults to User.php. Zikula always looks in the lib/ModuleName/Controller folder
+The type argument tells Zikula which file to find the function required. In effect you tell Zikula to include the file User.php (in the module's own folder determined from the module argument above. Zikula always looks in the lib/ModuleName/Controller folder
 
 eg.
-type=user means include the file lib/ModuleName/Controller/User.php (default if type not specified)
+type=user means include the file lib/ModuleName/Controller/User.php
 
 type=admin means include the file lib/ModuleName/Controller/Admin.php
 
 type=test means include the file lib/ModuleName/Controller/Test.php
 
+In legacy versions of Zikula (before 1.4) you could leave out type and it would default to user. In versions past 1.4 this will no longer be true and you should refrain from depending upon this legacy behavior.
 
 func
 ----
 
-The func parameter tells Zikula which function to call in the included file. The default value for func is 'main' if not specified.
+The func parameter tells Zikula which function to call in the included file.
 
 e.g.
 func=test calls the function test() in the class specified.
+
+In legacy versions of Zikula (before 1.4) you could leave out func and it would default to main. In versions past 1.4 this will no longer be true and you should refrain from depending upon this legacy behavior.
 
 Examples
 --------
@@ -80,19 +83,13 @@ index.php?module=helloworld&type=&admin&func=view (admin functions don't use sho
     
     call the function view() of the class Admin_Controller_User
 
-index.php?module=New&type=admin (admin functions don't use short urls)
+index.php?module=New&type=admin&func=main (admin functions don't use short urls)
     Look in modules/News
     
     Include lib/News/Controller/Admin.php
     
-    call the function main() of the class Admin_Controller_User- (default: func=main)
+    call the function main() of the class Admin_Controller_User
 
-index.php?module=News (news)
-    Look in modules/News folder
-    
-    Include lib/Helloworld/Controller/User.php (default: type=user)
-    
-    call function main() of the class User_Controller_User - (default: func=main)
 
 In summary, we can call specific functions from the URL by telling Zikula the module name, the file type, and the function name we wish to call. We will now explore functions a little more.
 
@@ -175,7 +172,7 @@ This gives information about your module and getMetaData returns an array giving
 You should now be able to install your module. Go to you admin panel of your Zikula site and install the StrainID2 module.
 
 1. Login as administrator
-2. Goto Administration -> Exstentions
+2. Goto Administration -> Extensions
 3. Find your StrainID2 module
 4. Activate the module
 
@@ -198,4 +195,4 @@ Module functions should return a mixed result, or boolean: they should never ech
 
 Zikula uses php object oriented programming (oop). This make available to you many powerful functions that you can use. It also makes future upgrades of the Zikula core easier. For our example here, we create a class StrainID2_Controller_User that extends the abstract controller class Zikula_AbstractController. Go look at the code for Zikula_AbstractController and you will see that it maintains a view variable, which is what we can render templates with, and then some housekeeping functions that takes care of setting up the view for us. All we need to do is concentrate on rendering our interface. For this simple example, we are just going to return Hello World. 
 
-To test the code point your browser at ZikulaFolder/index.php?module=strainid2. This will call the main() in lib/Controller/User.php. Zikula will now display 'Hello World!' in a nice little box in the center of the content window. Notice how it's rendered with all the rest of the page content. Congratulations, you have come a long way in understanding the module framework and how to get it up and running. In the next installment, we will work on fleshing out the StrainID module.
+To test the code point your browser at ZikulaFolder/index.php?module=strainid2&type=user&func=main. This will call the main() in lib/Controller/User.php. Zikula will now display 'Hello World!' in a nice little box in the center of the content window. Notice how it's rendered with all the rest of the page content. Congratulations, you have come a long way in understanding the module framework and how to get it up and running. In the next installment, we will work on fleshing out the StrainID module.
