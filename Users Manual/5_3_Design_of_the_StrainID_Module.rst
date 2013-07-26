@@ -3,7 +3,7 @@
 .. _previously: 5_2_Basic_Module_Structure.rst
 
 ============================
-Creating the StrainID2 module
+Designing StrainID2 module
 ============================
 
 :Author:
@@ -43,7 +43,7 @@ This data can naturally be stored in a single table.
 
 +------------------+----------------------------------+-------------+--------------+
 | Item Name        |   Description                    |  Type       |   Size       |
-+------------------+----------------------------------+-------------+--------------+
++==================+==================================+=============+==============+
 |     id           |  id for the item, primary key    |   integer   |    Large     |
 +------------------+----------------------------------+-------------+--------------+
 |  name            |    name of the species           |   string    |     255      |
@@ -78,7 +78,7 @@ There are three functions/interfaces that this module will need to be able to pe
 To perform these functions, several interfaces will have to be designed.
 
 * A table listing all the strains in the database. This can be a straight html table listing each strain and its reactions
-* A search interface. This will list each test and allow the user to choose the three possible reactions (+, -, u) from drop down menu lists. If you are wondering about variable, its not a possibility. They know what the reaction of their strain is.
+* A search interface. This will list each test and allow the user to choose the three possible reactions (+, -, u) from drop down menu lists. If you are wondering about variable (v) that is part of the data in the table, it's not a possibility. While various strains of a species can have variable reactions, they know what the reaction of *their strain* is.
 * A new strain interface where an allowed user can enter the name of new strains and choose what the reactions are.
 * A update strain interface where any strain information can be changed.
 
