@@ -40,7 +40,9 @@ The type argument tells Zikula which file to find the function required. In effe
 
 eg.
 type=user means include the file lib/ModuleName/Controller/User.php (default if type not specified)
+
 type=admin means include the file lib/ModuleName/Controller/Admin.php
+
 type=test means include the file lib/ModuleName/Controller/Test.php
 
 
@@ -50,7 +52,7 @@ func
 The func parameter tells Zikula which function to call in the included file. The default value for func is 'main' if not specified.
 
 e.g.
-func=test calls the function test() in the class specificed.
+func=test calls the function test() in the class specified.
 
 Examples
 --------
@@ -59,27 +61,37 @@ Here are a number of examples to help you get a feel for how the calling process
 
 index.php?module=helloworld&type=test&func=add (helloworld/test/add)
     look in modules/Helloworld
+    
     include lib/Helloworld/Controller/Test.php
+    
     call the function add() of the class Test_Controller_User
     
 index.php?module=helloworld&type=user&func=show (helloworld/user/show)
-    look in modules/helloworld
+    look in modules/Helloworld
+    
     include lib/Helloworld/Controller/User.php
+    
     call the function show() of the class User_Controller_User
 
 index.php?module=helloworld&type=&admin&func=view (admin functions don't use short urls)
-    look in modules/helloworld
+    look in modules/Helloworld
+    
     include lib/Helloworld/Controller/Admin.php
+    
     call the function view() of the class Admin_Controller_User
 
 index.php?module=New&type=admin (admin functions don't use short urls)
     Look in modules/News
+    
     Include lib/News/Controller/Admin.php
+    
     call the function main() of the class Admin_Controller_User- (default: func=main)
 
 index.php?module=News (news)
     Look in modules/News folder
+    
     Include lib/Helloworld/Controller/User.php (default: type=user)
+    
     call function main() of the class User_Controller_User - (default: func=main)
 
 In summary, we can call specific functions from the URL by telling Zikula the module name, the file type, and the function name we wish to call. We will now explore functions a little more.
@@ -123,9 +135,9 @@ The latest distributions of Zikula do not contain a blank module. For this tutor
         }
     }
 
-This give information about your module and getMetaData returns an array giving the details. The name and version are especially important. The *display name* is what admins and users will see as the name of your module. The *descsription* explains the purpose of your module. The *version* is used by Zikula to determine an upgrade is needed. If the user installs a newer version of your module, Zikula will ask the admin of the site to upgrade the module and this will call the upgrade function in Installer.php. This allows you to change the data model of your module and provide an upgrade path for old users of your module. The *securityschema* explains the convention for allowing permission to your module. Your module is designed so that it follows this schema and can then interface with the permissions functions of Zikula. Finally the *core_min* and *core_max* indicate what versions of Zikula your module is designed to work with. (Don't worry if some of this does not make sense, we will explain it as we go along in the programming)
+This gives information about your module and getMetaData returns an array giving the details. The name and version are especially important. The *display name* is what admins and users will see as the name of your module. The *description* explains the purpose of your module. The *version* is used by Zikula to determine if an upgrade is needed. If the admin installs a newer version of your module, Zikula will notify the admin that an upgrade needs to take place and this will call the upgrade function in Installer.php. This allows the module developer to change the data model of a module and provide an upgrade path for old users of the module. The *securityschema* explains the convention for creating permission rules for your module. Your module is designed so that it follows this schema and can then interface with the permissions functions of Zikula. Finally the *core_min* and *core_max* indicate what versions of Zikula your module is designed to work with. (Don't worry if some of this does not make sense, we will explain it as we go along in the programming)
 
-4. We also need to add some code to the installer file to be able to install it in Zikula. When you try to install a module, Zikula expects to find an install() function inside your installer class. So lets the stub functions that are needed. We will fill them in later.
+4. We also need to add some code to the installer file to be able to install it in Zikula. When you try to install a module, Zikula expects to find an install() function inside Installer.php. So lets add the stub functions that are needed. We will fill them in later. Put this code in lib/StrainID2/Installer.php
 
 ::
 
@@ -163,7 +175,7 @@ This give information about your module and getMetaData returns an array giving 
 You should now be able to install your module. Go to you admin panel of your Zikula site and install the StrainID2 module.
 
 1. Login as administrator
-2. Goto Administration -> Extentions
+2. Goto Administration -> Exstentions
 3. Find your StrainID2 module
 4. Activate the module
 
@@ -172,7 +184,7 @@ There is more information on installing_ modules in the Admin section of the Use
 Module functions
 ----------------
 
-Module functions should return a mixed result, or boolean: they should never echo or print anything directly (to the screen). Information returned from the interface modules (lib/Controller/User.php and lib/Controller/Admin.php) will very often be text. (Other information can be returned, but we will cover those cases later) Zikula will take the return value of the module function and process it, ultimately adding it to the appropriate place in the page layout and displaying it to the user. Later we will learn about views and how to display content using page templates. Using views and template is the preferred method for Zikula (in fact you really don't have any choice), and very powerful. But for now we will keep it simple to demonstrate how to get your module working and displaying the text on the screen. Open up User.php file and type the following code for the class.
+Module functions should return a mixed result, or boolean: they should never echo or print anything directly (to the screen). Information returned from the interface modules (lib/Controller/User.php and lib/Controller/Admin.php) will very often be text. (Other information can be returned, but we will cover those cases later) Zikula will take the return value of the module function and process it, ultimately adding it to the appropriate place in the page layout and displaying it to the user. Later we will learn about views and how to display content using page templates. Using views and template is the preferred method for Zikula (in fact you really don't have any choice), and very powerful. But for now we will keep it simple to demonstrate how to get your module working and displaying  text on the screen. Open up User.php file and type the following code for the class.
 
 ::
 
@@ -184,6 +196,6 @@ Module functions should return a mixed result, or boolean: they should never ech
         
     }
 
-Zikula uses php object oriented programming (oop). This make available to you many powerful functions that you can use in your modules. It also makes future upgrades of the Zikula core easier. For our example here, we create a class StrainID2_Controller_User that extends the abstract controller class Zikula_AbstractController. Go look at the code for Zikula_AbstractController and you will see that it maintains the view, which is what we can render templates with, and then some housekeeping that takes care of setting up the view for us. All we need to do is concentrate on rendering our interface. For this simple example, we are just going to return Hello World. 
+Zikula uses php object oriented programming (oop). This make available to you many powerful functions that you can use. It also makes future upgrades of the Zikula core easier. For our example here, we create a class StrainID2_Controller_User that extends the abstract controller class Zikula_AbstractController. Go look at the code for Zikula_AbstractController and you will see that it maintains a view variable, which is what we can render templates with, and then some housekeeping functions that takes care of setting up the view for us. All we need to do is concentrate on rendering our interface. For this simple example, we are just going to return Hello World. 
 
-To test the code point your browser at ZikulaFoler/index.php?module=strainid2. This will call the main() in lib/Controller/User.php. Zikula will now display 'Hello World!' in a nice little box in the center of the content window. Notice how it's rendered with all the rest of the page content. Congratulations, you have come a long way in understanding the module framework and how to get it up and running. In the next installment, we will work on fleshing out the StrainID module.
+To test the code point your browser at ZikulaFolder/index.php?module=strainid2. This will call the main() in lib/Controller/User.php. Zikula will now display 'Hello World!' in a nice little box in the center of the content window. Notice how it's rendered with all the rest of the page content. Congratulations, you have come a long way in understanding the module framework and how to get it up and running. In the next installment, we will work on fleshing out the StrainID module.
