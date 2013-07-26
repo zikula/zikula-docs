@@ -36,6 +36,11 @@ images
 
 The images folders contains any module specific images you use in your code. At a minimum it will hold a admin.png image that is displayed in the extensions module in the administration panel of Zikula. You are welcome to place any other custom images you use in your user interface for your module. Be aware of the large collection of stock images that come with Zikula. Often you can find an image there, and not have to clutter your module with images.
 
+javascript
+----------
+
+The javascript folder contains any scripts that your module uses. These will be automatically refereced in the html head section an be available to the pages of your module.
+
 lib
 ----
 
