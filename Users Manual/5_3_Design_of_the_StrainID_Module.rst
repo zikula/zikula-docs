@@ -33,7 +33,7 @@ Once the problem is identified, it is now important to find the best solution. T
 In the case of the project we are imagining, it is highly unlikely such a specialized module for identifying strains, would be found in at GitHub. And no surprise, there is none. So, it looks like we are going to have to roll our own.
 
 Define the Module on Paper
----------------------------
+--------------------------
 
 A very important step is to design your module conceptually. Too often new programmers will not take the time to think through what they are trying to accomplish and may code themselves into a corner. You can save yourself days of work, by spending an hour planning out the data structures you need, the user interface, and the code to knit them together. Zikula modules are set up to encourage the use of a very powerful, and efficient design pattern, the Model-View-Controller (MVC) pattern. The model is your data stored in the database, the view is the interface that is presented to the user, typically using html pages, and the controller is the code that interfaces between the two. The files in a Zikula module as described previously_. In this phase of the project we will think about the structure of the model and how the user will view that model. 
 
