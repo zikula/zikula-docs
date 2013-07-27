@@ -322,7 +322,7 @@ By using this pattern, it allows Doctrine to access all of your data and you don
 Initialization
 ==============
 
-When a user clicks install/activate for a module, Zikula looks in your modules directory for the Installer.php file. It then calls the method install() of tne class YourModuleName_Installer. This class must inherit from Zikula_AbstractInstaller. In our case, our installer class is called StrainID2_Installer. The installer funciton calls DoctrineHelper to do the table installation into the database.
+When a user clicks install/activate for a module, Zikula looks in your modules directory for the Installer.php file. It then calls the method install() of the class YourModuleName_Installer. This class must inherit from Zikula_AbstractInstaller. In our case, our installer class is called StrainID2_Installer. The installer funciton calls DoctrineHelper to do the table installation into the database.
 
 ::
 
@@ -342,6 +342,7 @@ When a user clicks install/activate for a module, Zikula looks in your modules d
 DoctrineHelper::createSchema lists the entitiy manager to use (a variable created by the parent class Zikula_AbstractInstaller) and the name of your Entity class that we created above. All the rest is taken care of for you and your data table is created in the database. We also call a custom function, createDefaultData that adds some dummy data to our table. Here is the code for createDefaultData...
 
 ::
+
     protected function createDefaultData()
     {
         $strain1 = new StrainID2_Entity_StrainID2();
@@ -378,11 +379,12 @@ DoctrineHelper::createSchema lists the entitiy manager to use (a variable create
         }
     }
 
-We create a new StrainID2_Entity_StrainID2 class, set all the variables by sending messages to the setters and then simply tell the entityManager persist on each instance. When the flush call is made, all the data is saved to the database table.
+We create a new StrainID2_Entity_StrainID2 class, set all the variables by sending messages to the setters and then simply tell the entityManager persist on each instance. When the flush call is made, all the data is saved to the database table. Note how simple it is to create and save data to the database. No SQL code needs to be written and your code is not tied to any one database. As long as doctrine supports it, it should be possible to use it.
 
-The upgrade function in this class is a stub right now since this is the first version of this module. The uninstall function drops the table from the database using a call to DoctrineHelper::dropSchema.
+The upgrade function in this class is a stub right now since this is the first version of this module and we really won't talk about doing upgrades in this tutorial. The uninstall function drops the table from the database using a call to DoctrineHelper::dropSchema.
 
 ::
+
     public function uninstall()
     {
         // drop tables
