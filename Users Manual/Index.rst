@@ -23,7 +23,6 @@ Table of Contents
 Chapter 1 Introduction_ 
 
 Chapter 2 Installation and Configuration
-
     Section 2.1_ Installation
     
     Seciton 2.2_ Configuration
@@ -35,6 +34,7 @@ Chapter 2 Installation and Configuration
 Chapter 3 Cusotmizing Theme
 
 Chapter 4 Zikula Cookbook
+    
     Section 4.1 Security Center
     
 Chapter 5 Module Programming
@@ -53,7 +53,6 @@ Chapter 5 Module Programming
     Section 5.7_ User Functions in a Module
 
 Chapter 6 Module Programming with Most
-
     Section 6.1_ Using MOST to make a Module
     
     Section 6.2_ Install and test your MOST Module
