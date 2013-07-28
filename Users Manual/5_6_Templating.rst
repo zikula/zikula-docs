@@ -54,15 +54,17 @@ The best way to learn templates is to work with them so let's explore an example
 
 
 The only other part to fill in is the template. Templates are a mixture of html code and variables. You can layout the html code any way you like. Any legal html tag can be used in a template. Honestly, you can put anything you like in a template, but if you are displaying html code, the finished product should meet the latest html specification. Lets start with a simple tempate. Here are the contents of templates/user/main.tpl:
-  <div>
-    <p>Hello World!  My name is {$myName} and last time I logged in was {$lastLog}.</p>
- </div>
+ ::
+ 
+     <div>
+        <p>Hello World!  My name is {$myName} and last time I logged in was {$lastLog}.</p>
+     </div>
 
 Note how our two variables are identified, the view tags in Zikula are started by { and ended by }
 
 In the example above {$myname} simply means insert the variable called $myname - this was the variable we assigned in our code before 'fetching' the template. If you like you can set this up by creating the template and saving it at templates/users/main.tpl. Once you have this set up, call the function by going to this URL http://yourzikulainstall/index.php?module=StrainID2&type=user&func=main
 
- If you get an error saying that the page cannot be found, read the message carefully and it will tell you what the problem is. A common cause of failure is that the template name in the fetch call will not match the template name and path in the templates directory of the StrainID2 module.
+If you get an error saying that the page cannot be found, read the message carefully and it will tell you what the problem is. A common cause of failure is that the template name in the fetch call will not match the template name and path in the templates directory of the StrainID2 module.
 
 This gives you a gentle introduction to templates. There is A TON of magic you can do with templates so dig into them. Just for fun, lets look at the debug interface for zikula templates. This is a very powerful console you can call up to check out what is happening in your template and it is very easy to do. Just add {zdebug} anywhere in the user/main.tpl template and reload the page. It loads as normal, but a console pops up showing you all the template variables that are available. Open up the pncore variable and you will see that the uname and lastLogin were already available to us and we could have just used them by adding {$pncore.user.uname} and {$pncore.user.lastLogin} to our page. 
 
@@ -77,45 +79,57 @@ Plugin files are named function.pluginname.php and contain *one* function inside
 smarty_function_{$pluginname}. With symphony this will change.
 
 A plugin is called within a template like this:
-{myplugin}
+
+::
+
+    {myplugin}
 
 
 The example above will include the file in templates/plugins/function.myplugin.php and call the function
 
-smarty_function_myplugin()
+::
+
+    smarty_function_myplugin()
 
 Lets walk through a simple example that checks when the person last logged in and chides them if it is more than a month. First, add this line to the bottom of your template user/main.tpl.
 
-{logcheck lastLog=$lastLog}
+::
+
+    {logcheck lastLog=$lastLog}
 
 
 The example above will include the file in templates/plugins/function.logcheck.php and call the function smarty_function_logcheck() and parse the variable 'lastLog' to the function.
 
 Variables are passed in an associative array of (name => value). Write the following code in any text editor and then save it as the file function.agecheck.php in the StrainID2/templates/plugins/
 directory
-<?php
-//example plugin logcheck
 
-function smarty_function_logcheck($params, &$smarty)
-{
-    // pull the login info variable out of the $params
-    $lastLog = (int)$params['lastLog'];
-    //This calculates how much time has passed since your last login in days
-    $days = floor((time() - strtotime($lastLog))/86400);
-    //We say a message depening upon when you last logged in.
-    if($days > 0){
-        $result="It has been $days days since you logged in";
-    } else {
-        $result = "You logged in earlier today. Get a live will ya?";
-    }
-    return $result;
-}
-?>
+::
+
+    <?php
+        //example plugin logcheck
+        
+        function smarty_function_logcheck($params, &$smarty)
+        {
+            // pull the login info variable out of the $params
+            $lastLog = (int)$params['lastLog'];
+            //This calculates how much time has passed since your last login in days
+            $days = floor((time() - strtotime($lastLog))/86400);
+            //We say a message depening upon when you last logged in.
+            if($days > 0){
+                $result="It has been $days days since you logged in";
+            } else {
+                $result = "You logged in earlier today. Get a live will ya?";
+            }
+            return $result;
+        }
+    ?>
 
 
 The $smarty object will be the same $view instance that called the plugin. This means the plugin can also modify the $view object. Our function could do something like 
 
-$smarty->assign('foo', 'bar');
+::
+  
+    $smarty->assign('foo', 'bar');
 
 
 Which would mean the variable $foo would now be available to the template. You may be wondering why would you use a plugin, when you can just add the variable to the template? Plugins are very valuable for two reasons. First, they can be reused in many templates by adding a single line that calls them. Second, they can use php code to process a template while it is being rendered. Some very powerful things can be done with them.
@@ -128,7 +142,9 @@ A modifier is a different kind of plugin. They are found system wide in [root]/l
 Files named modifier.nameofmodifer.php and contain one function called smarty_modifier_nameofmodifer
 will be passed at least one string. And they will then process that string. One system wide modifier, safehtml, will clean a template variable for display as html code.
 
-<!--[ $myname|safehtml ]-->
+::
+
+    {$myname|safehtml}
 
 
 Its code is as follows
@@ -143,28 +159,32 @@ Its code is as follows
 
 So lets add a modifier that bolds the date if it is this month. Clearly an active user. Place the following code in a text file and then save it as modifier.activeuser.php in the StrainID2/templates/plugins directory.
 
-<?php
-function smarty_modifier_activeuser($string)
-{
-    $date = strtotime($string);
-    $days = (time() - $date)/86400;
-    $timelapse = "";
-    
-    if($days < 30){
-        $timelapse="<b>$string</b>";
-    } else {
-        $timelaspe=$string;
+::
+
+    <?php
+    function smarty_modifier_activeuser($string)
+    {
+        $date = strtotime($string);
+        $days = (time() - $date)/86400;
+        $timelapse = "";
+        
+        if($days < 30){
+            $timelapse="<b>$string</b>";
+        } else {
+            $timelaspe=$string;
+        }
+        return $timelapse;
     }
-    return $timelapse;
-}
-?>
+    ?>
 
 Now add change the code slightly in your template; change 
 
-{$lastLog}
+::
+    {$lastLog}
 
 to
 
-{$lastLog|activeuser}
+::
+    {$lastLog|activeuser}
 
 When you reload the page, the age of the variable should be bolded if it has been less than 30 days. Modifiers can be very powerful ways of processing text after a variable has been created.
