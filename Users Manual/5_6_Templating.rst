@@ -180,11 +180,13 @@ So lets add a modifier that bolds the date if it is this month. Clearly an activ
 Now add change the code slightly in your template; change 
 
 ::
+
     {$lastLog}
 
 to
 
 ::
+
     {$lastLog|activeuser}
 
 When you reload the page, the age of the variable should be bolded if it has been less than 30 days. Modifiers can be very powerful ways of processing text after a variable has been created.
