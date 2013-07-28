@@ -394,11 +394,13 @@ At the top of each admin template, we add the standard interface html, by using 
 This puts a common look on all admin templates and gives the administrator a standard interface for all modules. Below this code we then decide what we will title the interface and then assign some template variables. These variables are available throughout the rest of the template. Next the title of the template and icon are made and we then get to the actual form. Since we are using the form interface, we can use many of the plugins that are provided with Zikula. These are located at /lib/viewplugins/formplugins. All of these are very well documented in the source, and you can often figure out how to read them by reading the source code. To open a form the template code is..
 
 ::
+    
     {form cssClass='z-form'}
 
 and to close a form, the template code is..
 
 ::
+    
     {/form}
 
 We set the initial focus to the name field. Then elements of the form are laid out. In our case this follows a simple pattern. The form label, followed by the form element. For example, the first element is..
