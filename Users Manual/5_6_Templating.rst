@@ -4,7 +4,7 @@
 Display with Template Engines
 ------------------------------
 
-In the previous section we returned text directly to the zikula api. That is great for learning, but it completely defeats the purpose of using a database and a CMS. The goal is to separate your data from the html code that displays that data. When done well, this allows the changing of the appearance of a site, its theme, without affecting the data that is displayed. This magic is accomplished using templates and views, which is a Zikula extension of template engines. Right now Zikula supports both Smarty and Symphony templates. Here I show how to use templates that use smarty extensions, but as I learn symphony I update the tutorial. In this section we will begin to explore how to use templates to display your content. If you have not already, familiarize yourself with the Basic Module Structure_ before proceeding
+In the previous section we returned text directly to the zikula api. That is great for learning, but it completely defeats the purpose of using a database and a CMS. The goal is to separate your data from the html code that displays that data. When done well, this allows the changing of the appearance of a site, its theme, without affecting the data that is displayed. This magic is accomplished using templates and views, which is a Zikula extension of template engines. Right now Zikula supports both Smarty and twig templates. Here I show how to use templates that use smarty extensions, but as I learn twig I update the tutorial. In this section we will begin to explore how to use templates to display your content. If you have not already, familiarize yourself with the Basic Module Structure_ before proceeding
 
 This is an extremely important step forward with web applications. It is similar to the idea of database reports that display data from a table or query.
 
@@ -76,7 +76,7 @@ Plugins are functions we can call while inside the display template. Smarty and 
 Zikula system wide plugins can be found in [root]/lib/viewplugins and module specific plugins in our module folder in templates/plugins
 
 Plugin files are named function.pluginname.php and contain *one* function inside called
-smarty_function_{$pluginname}. With symphony this will change.
+smarty_function_{$pluginname}. With twig this will change.
 
 A plugin is called within a template like this:
 
@@ -157,7 +157,7 @@ Its code is as follows
     }
 
 
-So lets add a modifier that bolds the date if it is this month. Clearly an active user. Place the following code in a text file and then save it as modifier.activeuser.php in the StrainID2/templates/plugins directory.
+So lets add a modifier that bolds the date if it is less than 30 days ago; clearly an active user. Place the following code in a text file and then save it as modifier.activeuser.php in the StrainID2/templates/plugins directory.
 
 ::
 
