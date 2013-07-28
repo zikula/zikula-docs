@@ -78,6 +78,7 @@ StrainID2_Controller_Admin::main
 The main() function is the entry point for creating or editing strain data. First, we check to see if the caller has the right permissions to access this interface (ACCESS_ADMIN) if so, then we get the $repository and use this to call a function, generate_strain_table, that is in our StrainID2_Api_User. This data is then assigned to the view using a template variable and the page is rendered. Note how all of this can be handled in just a few lines of code and we factor out the heavy lifting to another function. We do this because the strain table is going to be used by a number of functions. Here is the generate_strain_table function. This is found in lib/StrainID2/Api/User.php.
 
 ::
+    
     static public function generate_strain_table($view, $repository, $do_edit_links, $where = "") {
         //we want our strains listed alphabetically
         $orderBy = 'name';
@@ -95,6 +96,7 @@ The main() function is the entry point for creating or editing strain data. Firs
 Note that this is a static function, which means it can be called by any part of the module as we did in the StrainID2_Controller_Admin::main funciton. There are specific rules about how static functions can behave. The one important thing to remember is that they cannot access instance variables of a class. We grab the strain data by sending a message to the repository called getStrains. We want it ordered by name, but we do not include $where, since we want all the strains. Here is that code, located at lib/StrainID2/Entity/Respository/StrainID2Respository.php
 
 ::
+    
     public function getStrains($orderBy, $where='')
     {
         $dql = "SELECT a FROM StrainID2_Entity_StrainID2 a";
@@ -129,6 +131,7 @@ The database is queried by sending the now built request to the entity manager (
 The data returned in this case looks like this...
 
 ::
+    
     Array
     (
     [0] => StrainID2_Entity_StrainID2 Object
@@ -152,6 +155,7 @@ The data returned in this case looks like this...
 Heading back to the generate_strain_table function, lets look at that user/strainTbl.tpl.
 
 ::
+    
     <div id="StrainID_body">
         <table class="z-datatable">
             <tr class="strain_list_row_header">
@@ -197,6 +201,7 @@ StrainID2_Controller_Admin::edit
 The edit function is called in two instances, to edit a strain, in that case the id of the strain is know, or to create a new strain. The class function is as follows.
 
 ::
+    
     public function edit()
     {
         //This line checks to make sure we have admin access to this module
@@ -276,6 +281,7 @@ In initialize, we first grab the sid (strain id) if one is given. If we do have 
 The template for this view, specified in the calls to the form class, is templates/admin/edit.tpl. 
 
 ::
+    
     {* purpose of this template: build the Form to edit an instance of strain *}
     {adminheader}
     {if $mode eq 'edit'}
@@ -382,6 +388,7 @@ The template for this view, specified in the calls to the form class, is templat
 At the top of each admin template, we add the standard interface html, by using the term
 
 ::
+    
     {adminheader}
 
 This puts a common look on all admin templates and gives the administrator a standard interface for all modules. Below this code we then decide what we will title the interface and then assign some template variables. These variables are available throughout the rest of the template. Next the title of the template and icon are made and we then get to the actual form. Since we are using the form interface, we can use many of the plugins that are provided with Zikula. These are located at /lib/viewplugins/formplugins. All of these are very well documented in the source, and you can often figure out how to read them by reading the source code. To open a form the template code is..
@@ -415,6 +422,7 @@ The Title of the first label is Name. We then use the formtextinput plugin to re
 Note here that we use the $reaction template variable to populate the list that is created. How to create these lists is described in the formdropdownlist plug in located at /lib/viewplugins/formplugins/function.formdropdownlist.php. This will create a dropdown list with the values +, -, u, and v. All of the other elements in the form are similar to this one. We finally close the form elements with possible submit actions.
 
 ::
+    
     {* include possible submit actions *}
     <div class="z-buttons z-formbuttons">
         {if $mode eq 'edit'}
@@ -431,6 +439,7 @@ Depending upon the mode we either make an Edit and Delete buttons, or we make a 
 The second half of StrainID2_Form_Handler_Admin_Edit handles the form after the user hits Edit, Create or Cancel. This will call the handleCommand message of our Form Handler class. 
 
 ::
+    
     public function handleCommand(Zikula_Form_View $view, &$args) {
         $returnurl = $view->getStateData('returnurl');
 

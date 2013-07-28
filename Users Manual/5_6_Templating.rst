@@ -51,10 +51,9 @@ The best way to learn templates is to work with them so let's explore an example
         return $this->view->fetch('user/main.tpl');
     }
 
-
-
 The only other part to fill in is the template. Templates are a mixture of html code and variables. You can layout the html code any way you like. Any legal html tag can be used in a template. Honestly, you can put anything you like in a template, but if you are displaying html code, the finished product should meet the latest html specification. Lets start with a simple tempate. Here are the contents of templates/user/main.tpl:
- ::
+
+::
  
      <div>
         <p>Hello World!  My name is {$myName} and last time I logged in was {$lastLog}.</p>
