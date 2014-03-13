@@ -1,0 +1,151 @@
+Multi Lingual Coding
+====================
+With Gettext you are free to write complete sentences in your code. Please do not abbreviate or cut sentences up.
+You may translate whole paragraphs even. When writing your code please understand all translation strings need to
+be extracted from all your files automatically to be compiled into a ``.pot`` file for use by translators. This means
+that you everything you want translated **must** be passed through a Gettext API call. It is perfectly okay to send in
+a variable so long as that variable has been predefined by evaluating a gettext call.
+
+
+    $var = __('hello world');
+    echo $var;
+
+
+Domains
+-------
+
+Because Zikula is a modular system, each module and theme has it's own self contained translations. The core has
+it's own translations too. Domains are in lowercase can can be retrieved from the API calls:
+
+
+    // returns: module_foo
+    $dom = ZLanguage::getModuleDomain('Foo');
+
+
+When you code within Zikula 1.2 you must retrieve the domain of your module and pass that into all Gettext API calls.
+
+PLEASE NOTE: Everything in the core distribution belongs to the core domain, ``zikula``. Please do not use core
+modules in the ``/system`` directory or the core themes as templates to base your code on as they will not work for
+3rd party modules and themes which must have their own ``locale`` directory and make use of the calls above. In 2.0,
+the new OO style modules get this property automatically from $this->__() etc. but this is beyond the scope of
+this document.
+
+APIs
+----
+
+Straight Gettext calls
+
+
+    $dom = ZLanguage::getModuleDomain('Foo');
+    echo __($text, $dom);
+    echo _n($singular, $plural, $count, $dom);
+
+
+Gettext calls with sprintf() replacement
+
+
+    $dom = ZLanguage::getModuleDomain('Foo');
+    echo __f($text, [var or array of values], $dom);
+    echo _fn($singular, $plural, $count, [var or array of values], $dom);
+
+
+Simple Gettext
+--------------
+
+
+    $dom = ZLanguage::getModuleDomain('Foo');
+    echo __('Hello world', $dom);
+
+
+Plurals
+-------
+Gettext will automatically chose the correct plural translation according to the rules set in the requested
+translation file. You simple give the singular and plural keys with an integer and gettext will return the
+correct version of the translation.
+
+
+    $dom = ZLanguage::getModuleDomain('Foo');
+    echo _n('There is a fly in my soup', 'There are flies in my soup', $flycount, $dom);
+
+
+    $dom = ZLanguage::getModuleDomain('Foo');
+    while (!checkpass($password)) {
+      $count--;
+      echo _fn('You have %s more try', 'You have %s more tries', $count, $count, $dom);
+    }
+
+*(the $count variable is converted to a string on display)*
+
+String Replacements
+-------------------
+
+String replacements are done with `sprintf()`_ using ``__f()`` for plain gettext and and ``_fn()`` for plurals (ngettext).
+
+The most used instances are string replacements ``%s`` and positional replacements ``%n$s`` where 'n' is the position
+number. You can learn about this at the `sprintf()`_ documentation.
+
+
+    $dom = ZLanguage::getModuleDomain('Foo');
+    return __f('Error: the username %s is not available', $username, $dom);
+    return LogUtil::registerError(__f('Access denied to %s', $func, $dom));
+    return __f('Please enter your %s and %s', array(__('phone number', $dom), __('zip code', $dom)), $dom);
+    return __f('%1$s buy me %2$s', array('Drak', __('a beer', $dom)), $dom);
+
+
+Notice that is the variable needs to be translated, we must call it through Gettext. See ``$drink``
+
+
+    $dom = ZLanguage::getModuleDomain('Foo');
+    $drink = __('a beer');
+    return __f('%1$s buy me %2$s', array('Drak', $drink), $dom);
+
+
+These are not very good examples but they illustrate the concept of string replacement. Generally you only use
+string replacement with variables since it makes no sense to replace already defined words as shown.
+
+Regarding, positional replacements can be reused again and again in a string. e.g.
+
+
+    $dom = ZLanguage::getModuleDomain('Foo');
+    $here = __('here');
+    $nothere = __('nothere');
+    return __f('Please click %1$s and %1$s but not %2$s', array($here, $nothere), $dom);
+
+
+Comments to Translators
+-----------------------
+
+This is a very useful feature. You can send a comment directly to the translator to help them understand your
+meaning, this is especially useful when you are using string replacements. Simple place a valid PHP comment
+before the Gettext call or within the Gettext call itself and start your comment with an explanation mark, !
+
+
+    $dom = ZLanguage::getModuleDomain('Foo');
+    //!This is a comment
+    $drink = __('a beer');
+    return __f(/*!This is another comment*/'%1$s buy me %2$s', array('Drak', $drink), $dom);
+
+
+Locale Directory
+----------------
+
+Each module must have it's own locale directory and must public a ``.pot`` in the name of the domain. This is
+autogenerated by using the `Gettext extraction tool`_.
+
+
+    /locale/module_foo.pot
+
+pnversion.php
+-------------
+Gettext ``pnversion.php`` for Zikula 1.2
+
+
+    $modversion['name']           = 'Foo';
+    $domain = ZLanguage::getModuleDomain($modversion['name']);
+    $modversion['displayname']    = __("Foo", $domain);
+    $modversion['description']    = __("Provides an interface for managing Foo.", $domain);
+    $modversion['version']        = '2.8';
+    $modversion['securityschema'] = array('Foo::' => '::');
+
+.. _sprintf():http://www.php.net/sprintf
+.. _Gettext extraction tool:http://community.zikula.org/module-Gettext-extract.htm
