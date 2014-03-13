@@ -64,7 +64,7 @@ or
 
 
     <!--[gt text="new phone" assign=alt]-->
-    <img src="phone.jpg" alt=$alt>
+    <img src="phone.jpg" alt="<!--[$alt]->">
 
 
 Plural Handling
@@ -78,7 +78,7 @@ Unlike within PHP code we can use the same plugin for Gettext calls for singular
 String Replacements
 -------------------
 
-We can also do string subsitution as follows using the tagN parameter. These follow the standard sprintf() norms.
+We can also do string substitution as follows using the ``tagN`` parameter. These follow the standard ``sprintf()`` norms.
 
 
     <!--[gt text="Welcome back %s" tag1=$name]-->
@@ -113,7 +113,7 @@ quotes retain the same behaviour as in PHP and how strings are evaluated in side
 
     <!--[assign var='url' value='http://zikula.org/']-->
     <!--[gt text="click here" assign='clickhere']-->
-    <!--[gt text='Please %1$s' tag1="<a href='$url'>$here</a>"]-->
+    <!--[gt text='Please %1$s' tag1="<a href='$url'>$clickhere</a>"]-->
 
 
 Comments to Translators
@@ -164,4 +164,4 @@ version.php
     $themeversion['license'] = '';
     $themeversion['xhtml'] = true;
 
-.. _Using Gettext with Modules:GetTextInModules
+.. _Using Gettext with Modules:GetTextInModules.rst

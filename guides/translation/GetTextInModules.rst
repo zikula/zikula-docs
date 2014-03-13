@@ -1,9 +1,9 @@
 Multi Lingual Coding
 ====================
 With Gettext you are free to write complete sentences in your code. Please do not abbreviate or cut sentences up.
-You may translate whole paragraphs even. When writing your code please understand all translation strings need to
+You may even translate whole paragraphs. When writing your code please understand all translation strings need to
 be extracted from all your files automatically to be compiled into a ``.pot`` file for use by translators. This means
-that you everything you want translated **must** be passed through a Gettext API call. It is perfectly okay to send in
+that everything you want translated **must** be passed through a Gettext API call. It is perfectly okay to send in
 a variable so long as that variable has been predefined by evaluating a gettext call.
 
 
@@ -60,7 +60,7 @@ Simple Gettext
 Plurals
 -------
 Gettext will automatically chose the correct plural translation according to the rules set in the requested
-translation file. You simple give the singular and plural keys with an integer and gettext will return the
+translation file. You simply give the singular and plural keys with an integer and gettext will return the
 correct version of the translation.
 
 

@@ -1,7 +1,7 @@
 Gettext with Javascript
 =======================
 
-Using the Javascript Gettext is similar to how it is done in PHP or templates. Below you will find information on a
+Using Gettext in Javascript is similar to how it is done in PHP or templates. Below you will find information on a
 few key differences.
 
 How it works
@@ -101,4 +101,4 @@ Here are some examples:
     Zikula._fn('hello my friend %s','hello my friends %s',2,['A','B'],'module_foo') // singular message, plural message, count, formatting params, domain
 
 .. _Gettext extraction tool:http://community.zikula.org/module-Gettext-extract.htm
-.. _Using Gettext with Modules:GetTextInModules
+.. _Using Gettext with Modules:GetTextInModules.rst

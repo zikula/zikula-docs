@@ -14,8 +14,8 @@ If the ruleset specifies there are three plural cases for example, PO-Edit will 
 you numbered from 0-2. 0 is the singular case, and 1 & 2 would be the plural. For Germanic languages there is just one
 case you you will see just two cases, 0 and 1.
 
-You can look up the reference code directly by entering the language at LaunchPad_ but be aware the forumula is not
-complete and must be expressed with ``nplural=x;plural=<rule>;`` where x is the number of plural cases. e.g. if Launchpad
+You can look up the reference code directly by entering the language at LaunchPad_ but be aware the formula is not
+complete and must be expressed with ``nplural=x;plural=<rule>;`` where ``x`` is the number of plural cases. e.g. if Launchpad
 tells you the rule is
 
 

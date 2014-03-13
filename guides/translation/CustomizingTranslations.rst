@@ -133,4 +133,4 @@ to the new Catalog, and update each .PO file with the 'Update from a POT file' o
 It will report you which strings are deprecated in the Catalog and which are new ones. Check that you don't lose
 any of your strings, and update it. Translate the new ones, and you're ready to use the next version of the module ;-)
 
-.. _structure:StructureAndTools
+.. _structure:StructureAndTools.rst

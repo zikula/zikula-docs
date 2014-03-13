@@ -81,9 +81,10 @@ will be seen.
 
 When a new release is made the ``.pot`` files will be regenerated. We can use PO-Edit to merge the changes with the
 translation ``.po`` you already completed. This will result in 3 possible changes:
-new, untranslated strings will appear requiring translation
-deleted translations will be removed
-existing strings that were updated need revision (called "fuzzy" translation)
+
+1. new, untranslated strings will appear requiring translation
+2. deleted translations will be removed
+3. existing strings that were updated need revision (called "fuzzy" translation)
 
 You can do this in PO-Edit by opening your ``.po`` file then selecting *Catalog* from the menu and *Update from POT file*,
 browse to the ``.pot`` and it will inform you of the changes.
@@ -94,7 +95,7 @@ Again, once you save the file it will automatically generate the ``.mo``
 
 Now it should be clear why ``.pot``, ``.po`` & ``.mo`` files should be distributed with each release.
 
-.. _Locale Structure:StructureAndTools
-.. _Plural Forms:Plurals
+.. _Locale Structure:StructureAndTools.rst
+.. _Plural Forms:Plurals.rst
 .. _POEdit Video Tutorial:http://zikula.org/tutorials/POEdit
-.. _locale structure:StructureAndTools
+.. _locale structure:StructureAndTools.rst
