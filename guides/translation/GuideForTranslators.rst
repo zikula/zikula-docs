@@ -10,8 +10,7 @@ New Core Translations
 ---------------------
 The 'Core' consists of everything in the standard Zikula 'Core'. For the sake of convenience, everything is wrapped into
 ONE translation file. The ``/modules`` and ``/themes`` directories are for 3rd party extensions, however, for clarity
-sake the following themes are considered 'Core':
-
+sake the following themes are considered 'Core'::
 
     /themes/andreas08
     /themes/rss
@@ -22,15 +21,13 @@ sake the following themes are considered 'Core':
 To create a core translation the first job is to create the layout in the ``/locale`` directory. You must select the
 language code you will be using according to the guidelines. In this example we will create a German translation.
 
-First create the following directory structure:
-
+First create the following directory structure::
 
     /locale/de
     /locale/de/LC_MESSAGES
 
 Now create a file called ``/locale/de/locale.ini`` to tell the system about the language. At the moment the the only value
-is ``language_code = ltr`` (for left to right) or ``rtl`` (for right to left) e.g.:
-
+is ``language_code = ltr`` (for left to right) or ``rtl`` (for right to left) e.g.::
 
     [language]
     language_code = ltr
@@ -62,8 +59,7 @@ The process to create a new translation is almost the same. For each module or t
 own ``locale`` directory. In our example we will use ``locale/module_foo.pot``
 
 In this example we will continue with a German translation of module 'Foo'. We follow the same process as for the Core
-but we do not need a ``locale.ini`` file. We again create the directories in the module/theme directory:
-
+but we do not need a ``locale.ini`` file. We again create the directories in the module/theme directory::
 
     locale/de
     locale/de/LC_MESSAGES

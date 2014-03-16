@@ -12,8 +12,7 @@ How it works
 Due to the nature of Javascript, which is a client-side language, Gettext translation must be sent to the browser -
 the same as the js scripts itself.
 So if you use translations, the system will add to the html header the additional element, which looks something
-like this:
-
+like this::
 
     script type="text/javascript" src="mo2json.php?lang=pl&zikula_js=zikula_js"
 
@@ -85,17 +84,16 @@ Template:
 Usage
 -----
 
-There are four methods for translating Gettext strings:
+There are four methods for translating Gettext strings::
 
     Zikula.__() // translates simple message
     Zikula.__f() // translates and format message using sprintf formatting rules
     Zikula._n() // translates plural message
     Zikula._fn() //translates and format plural message
 
-
 Both the syntax and the names are the same as those used in PHP. You can read about them on the `Using Gettext
 with Modules`_ page.
-Here are some examples:
+Here are some examples::
 
     Zikula.__('hello','module_foo'); // message, domain
     Zikula.__f('hello %s',['A'],'module_foo'); // message, formatting params, domain

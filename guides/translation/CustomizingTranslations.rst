@@ -32,8 +32,8 @@ translation; fill the headers, save the file as ``/config/locale/en/LC_MESSAGES/
 translate the original words we want to override. The final .PO source code may look like:
 
 **It is not recommended to manipulate the .PO file manually.**
+::
 
-    ...
     #. ! pntemplates/profile_user_members_view.htm:102
     msgid "Profile"
     msgstr "Account"
@@ -49,7 +49,7 @@ translate the original words we want to override. The final .PO source code may 
     #: pntemplates/profile_user_members_view.htm:107
     msgid "On-line:"
     msgstr ""
-    ...
+
 
 After save, poEdit will generate a smaller **.MO** with only the translated strings, and you will observe that the
 site will display the changed strings.

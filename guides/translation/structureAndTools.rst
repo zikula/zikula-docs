@@ -2,7 +2,7 @@ Locale Structure
 ================
 
 Core translations live in the /locale directory in the following structure. We will use the example of English,
-using the code ``en-us``
+using the code ``en-us``::
 
     /locale
     /locale/zikula.pot
@@ -21,8 +21,7 @@ All core translation files are named the same ``zikula.pot`` ``zikula.po`` ``zik
 Module translations live in the locale directory in the module directory. They contain the following files. The naming
 convention is with the prefixed ``module_`` followed by the module name all in lower case.
 
-Example module 'Foo'
-
+Example module 'Foo'::
 
     Foo/locale/module_foo.pot
     Foo/locale/en_US/LC_MESSAGES/module_foo.po
@@ -31,7 +30,7 @@ Example module 'Foo'
 Theme translations live in the locale directory in the theme directory. They contain the following files. The naming
 convention is with the prefix 'theme_' followed by the theme name all in lower case.
 
-Example theme 'Bar'
+Example theme 'Bar'::
 
     Bar/locale/theme_bar.pot
     Bar/locale/en_US/LC_MESSAGES/theme_bar.po
@@ -49,7 +48,7 @@ to override.
 
 You can then copy any module, theme or the main zikula translation ``.po`` and ``.mo`` files over.
 
-Here is an example with en_US to override the core translation domain and one module called 'foo':
+Here is an example with en_US to override the core translation domain and one module called 'foo'::
 
     config/locale
     config/locale/en_US/locale.ini
@@ -68,9 +67,9 @@ Here are some recommended tools. We recommend you try them all to find your favo
 
 PO Translation File Editors
 ---------------------------
-PO-Edit_ Works on Windows, Mac and Linux.
-Virtaal_ Excellent tool!
-`Zikula Translation Portal`_
+ - PO-Edit_ Works on Windows, Mac and Linux.
+ - Virtaal_ Excellent tool!
+ - `Zikula Translation Portal`_
 
 Translation Key Extraction Tools
 --------------------------------
