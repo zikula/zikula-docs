@@ -7,10 +7,11 @@ With Gettext you are free to write complete sentences in your code. Please do no
 You may even translate whole paragraphs. When writing your code please understand all translation strings need to
 be extracted from all your files automatically to be compiled into a ``.pot`` file for use by translators. This means
 that everything you want translated **must** be passed through a Gettext API call. It is perfectly okay to send in
-a variable so long as that variable has been predefined by evaluating a gettext call.
+a variable so long as that variable has been predefined by evaluating a gettext call::
 
 
-    $var = __('hello world');
+    $dom = ZLanguage::getModuleDomain('Foo');
+    $var = __('hello world', $dom);
     echo $var;
 
 
