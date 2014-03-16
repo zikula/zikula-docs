@@ -1,6 +1,8 @@
 Gettext with Javascript
 =======================
 
+This is a guide to using Gettext in Javascript within Zikula Core 1.3+.
+
 Using Gettext in Javascript is similar to how it is done in PHP or templates. Below you will find information on a
 few key differences.
 

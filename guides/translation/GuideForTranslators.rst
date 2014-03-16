@@ -1,22 +1,23 @@
 Translation Guide for Translators
 =================================
 
+This is a guide to using Gettext translation within Zikula Core 1.3+.
+
 This document is means solely for those wishing to create translations for the core, modules or themes. Please make sure
 you read the `Locale Structure`_ before proceeding. You will also want to decide on the plural rules before you proceed.
 
 New Core Translations
 ---------------------
 The 'Core' consists of everything in the standard Zikula 'Core'. For the sake of convenience, everything is wrapped into
-ONE translation file. The ``/modules`` and ``/themes`` directories are for 3rd party extensions, however, for clarity sake the
-following themes are considered 'Core':
+ONE translation file. The ``/modules`` and ``/themes`` directories are for 3rd party extensions, however, for clarity
+sake the following themes are considered 'Core':
 
 
     /themes/andreas08
-    /themes/voodoodolly
     /themes/rss
     /themes/Atom
     /themes/Printer
-    /themes/SeaBreeze?
+    /themes/SeaBreeze
 
 To create a core translation the first job is to create the layout in the ``/locale`` directory. You must select the
 language code you will be using according to the guidelines. In this example we will create a German translation.

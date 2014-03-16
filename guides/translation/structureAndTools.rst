@@ -13,7 +13,7 @@ using the code ``en-us``
 Explanation:
  - ``zikula.pot`` - a template of all raw untranslated text
  - ``locale.ini`` - contains information about the locale
- - ``zikula.po`` - the file translator translate
+ - ``zikula.po`` - the file translator work with to translate the strings
  - ``zikula.mo`` - the compiled translation
 
 All core translation files are named the same ``zikula.pot`` ``zikula.po`` ``zikula.mo``
@@ -28,7 +28,6 @@ Example module 'Foo'
     Foo/locale/en_US/LC_MESSAGES/module_foo.po
     Foo/locale/en_US/LC_MESSAGES/module_foo.mo
 
-
 Theme translations live in the locale directory in the theme directory. They contain the following files. The naming
 convention is with the prefix 'theme_' followed by the theme name all in lower case.
 
@@ -37,6 +36,10 @@ Example theme 'Bar'
     Bar/locale/theme_bar.pot
     Bar/locale/en_US/LC_MESSAGES/theme_bar.po
     Bar/locale/en_US/LC_MESSAGES/theme_bar.mo
+
+NOTE: in Zikula Core 1.4 the module and theme structure is changed. The ``locale`` directory is located in the
+``Resources`` directory. All other information is the same.
+
 
 Overriding Translations
 -----------------------

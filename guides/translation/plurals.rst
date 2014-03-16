@@ -1,5 +1,8 @@
 Plural Forms
 ============
+
+This is a guide to using Gettext plural configurations within Zikula Core 1.3+.
+
 Different languages have different rules about plural cases. For example in English, 1 is singular but everything else
 including 0 is plural. e.g. "There are no cats in the house" or "You have 20 dollars in your pocket".
 

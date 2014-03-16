@@ -1,5 +1,8 @@
 Multi Lingual Coding
 ====================
+
+This is a guide to using Gettext in Modules (php) within Zikula Core 1.3+.
+
 With Gettext you are free to write complete sentences in your code. Please do not abbreviate or cut sentences up.
 You may even translate whole paragraphs. When writing your code please understand all translation strings need to
 be extracted from all your files automatically to be compiled into a ``.pot`` file for use by translators. This means
@@ -22,7 +25,15 @@ it's own translations too. Domains are in lowercase can can be retrieved from th
     $dom = ZLanguage::getModuleDomain('Foo');
 
 
-When you code within Zikula 1.2 you must retrieve the domain of your module and pass that into all Gettext API calls.
+In most cases, the domain is automatically configured for you (in all classes inheriting from ``Zikula_AbstractBase``
+like Controller, Api, and Version classes as well as several other instances). In those cases, you do not have to
+specify the domain in your call. In other cases, however, it may be necessary or even useful, to specify the domain.
+In those cases, you call the translation functions directly like so:
+
+
+    $dom = ZLanguage::getModuleDomain('Foo');
+    $myString = __('My string', $dom);
+
 
 PLEASE NOTE: Everything in the core distribution belongs to the core domain, ``zikula``. Please do not use core
 modules in the ``/system`` directory or the core themes as templates to base your code on as they will not work for
@@ -30,31 +41,11 @@ modules in the ``/system`` directory or the core themes as templates to base you
 the new OO style modules get this property automatically from $this->__() etc. but this is beyond the scope of
 this document.
 
-APIs
-----
-
-Straight Gettext calls
-
-
-    $dom = ZLanguage::getModuleDomain('Foo');
-    echo __($text, $dom);
-    echo _n($singular, $plural, $count, $dom);
-
-
-Gettext calls with sprintf() replacement
-
-
-    $dom = ZLanguage::getModuleDomain('Foo');
-    echo __f($text, [var or array of values], $dom);
-    echo _fn($singular, $plural, $count, [var or array of values], $dom);
-
-
 Simple Gettext
 --------------
 
 
-    $dom = ZLanguage::getModuleDomain('Foo');
-    echo __('Hello world', $dom);
+    echo $this->__('Hello world');
 
 
 Plurals
@@ -64,14 +55,12 @@ translation file. You simply give the singular and plural keys with an integer a
 correct version of the translation.
 
 
-    $dom = ZLanguage::getModuleDomain('Foo');
-    echo _n('There is a fly in my soup', 'There are flies in my soup', $flycount, $dom);
+    echo $this->_n('There is a fly in my soup', 'There are flies in my soup', $flycount);
 
 
-    $dom = ZLanguage::getModuleDomain('Foo');
     while (!checkpass($password)) {
       $count--;
-      echo _fn('You have %s more try', 'You have %s more tries', $count, $count, $dom);
+      echo $this->_fn('You have %s more try', 'You have %s more tries', $count, $count);
     }
 
 *(the $count variable is converted to a string on display)*
@@ -85,19 +74,17 @@ The most used instances are string replacements ``%s`` and positional replacemen
 number. You can learn about this at the `sprintf()`_ documentation.
 
 
-    $dom = ZLanguage::getModuleDomain('Foo');
-    return __f('Error: the username %s is not available', $username, $dom);
-    return LogUtil::registerError(__f('Access denied to %s', $func, $dom));
-    return __f('Please enter your %s and %s', array(__('phone number', $dom), __('zip code', $dom)), $dom);
-    return __f('%1$s buy me %2$s', array('Drak', __('a beer', $dom)), $dom);
+    return $this->__f('Error: the username %s is not available', $username);
+    return LogUtil::registerError($this->__f('Access denied to %s', $func));
+    return $this->__f('Please enter your %s and %s', array($this->__('phone number'), $this->__('zip code')));
+    return $this->__f('%1$s buy me %2$s', array('Drak', $this->__('a beer')));
 
 
 Notice that is the variable needs to be translated, we must call it through Gettext. See ``$drink``
 
 
-    $dom = ZLanguage::getModuleDomain('Foo');
-    $drink = __('a beer');
-    return __f('%1$s buy me %2$s', array('Drak', $drink), $dom);
+    $drink = $this->__('a beer');
+    return $this->__f('%1$s buy me %2$s', array('Drak', $drink));
 
 
 These are not very good examples but they illustrate the concept of string replacement. Generally you only use
@@ -106,10 +93,9 @@ string replacement with variables since it makes no sense to replace already def
 Regarding, positional replacements can be reused again and again in a string. e.g.
 
 
-    $dom = ZLanguage::getModuleDomain('Foo');
-    $here = __('here');
-    $nothere = __('nothere');
-    return __f('Please click %1$s and %1$s but not %2$s', array($here, $nothere), $dom);
+    $here = $this->__('here');
+    $nothere = $this->__('nothere');
+    return $this->__f('Please click %1$s and %1$s but not %2$s', array($here, $nothere));
 
 
 Comments to Translators
@@ -120,31 +106,28 @@ meaning, this is especially useful when you are using string replacements. Simpl
 before the Gettext call or within the Gettext call itself and start your comment with an explanation mark, !
 
 
-    $dom = ZLanguage::getModuleDomain('Foo');
     //!This is a comment
-    $drink = __('a beer');
-    return __f(/*!This is another comment*/'%1$s buy me %2$s', array('Drak', $drink), $dom);
+    $drink = $this->__('a beer');
+    return $this->__f(/*!This is another comment*/'%1$s buy me %2$s', array('Drak', $drink));
 
 
 Locale Directory
 ----------------
 
-Each module must have it's own locale directory and must public a ``.pot`` in the name of the domain. This is
+Each module must have it's own locale directory and must publish a ``.pot`` in the name of the domain. This is
 autogenerated by using the `Gettext extraction tool`_.
 
 
     /locale/module_foo.pot
 
-pnversion.php
--------------
-Gettext ``pnversion.php`` for Zikula 1.2
+Version.php
+-----------
 
 
-    $modversion['name']           = 'Foo';
-    $domain = ZLanguage::getModuleDomain($modversion['name']);
-    $modversion['displayname']    = __("Foo", $domain);
-    $modversion['description']    = __("Provides an interface for managing Foo.", $domain);
-    $modversion['version']        = '2.8';
+    $modversion['name'] = 'Foo';
+    $modversion['displayname'] = $this->__("Foo");
+    $modversion['description'] = $this->__("Provides an interface for managing Foo.");
+    $modversion['version'] = '2.8';
     $modversion['securityschema'] = array('Foo::' => '::');
 
 .. _sprintf():http://www.php.net/sprintf
