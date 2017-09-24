@@ -35,6 +35,13 @@ What You Should Know
 
 I do expect you to have a basic foundation before setting off on the journey of learning and using Zikula. I expect you to be familiar with using a web browser such as Firefox, Safari or Internet Explorer. You shoudl also know the basics of html_ markup language. Finally, you need to have patience and a willingness to ask questions when you get stuck. And you will get stuck. When this happens, visting the Zikula Forums_
 
+Contribute!
+-----------
+
+Zikula is open source software contributed by a community of users and developers. If you are interested in this software (and clearly you are if you have found these documents) consider contributing to its further development. I can just hear you thinking "But, I am not a developer!" And to that I say, "So what?" There are many things you can do to help. Contribute to the Zikula_ web site, participate in the Zikula Forums_, help test and debug new releases, help write this manual. There are obviously many ways you can help. If you use this cms, you really have an obligation to give something back.
+
+For those of you developing modules, get them registered on Github. Zikula has its own repository there called zikula-modules_. If you create your module there, not only will others find it and help you develop it, but it also gives a great set of version control features.
+
 Organization of this Manual
 ----------------------------
 
@@ -52,4 +59,5 @@ Finally, we will close out the manual looking at Module and plugin development a
 .. _GitHub: https://github.com/zikula/core
 .. _Zikula: http://zikula.org
 .. _html: http://www.w3schools.com/html/default.asp
-.. _Zikula Forums: http://community.zikula.org/module-Forum.htm
+.. _Forums: http://community.zikula.org/module-Forum.htm
+.. _zikula-modules https://github.com/zikula-modules

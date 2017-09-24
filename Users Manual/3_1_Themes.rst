@@ -18,6 +18,7 @@ docs
 ====
 
 This folder contains any documentation that is needed explaining how to use the theme. In many cases there will be no documentation because themes are self explanatory. Most often what you will find here is a license explaining where you can use a theme.
+
 images
 ======
 
