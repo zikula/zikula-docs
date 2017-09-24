@@ -1,19 +1,20 @@
-=====
+============
 Installation
-=====
+============
 
 The code for installation is much simpler and easier to implement. You have to create your Entity class as clearly described in the Symfony_ documentation. Once you have those, the implementation of the installation file is easy.
 
-Here is an example file to use..
+Here is an example file to use.
 
 ::
+    
     namespace Paustian\BookModule;
 
 
     use Zikula\Core\AbstractExtensionInstaller;
     
     class BookModuleInstaller extends AbstractExtensionInstaller {
-    private $entities = array(
+        private $entities = array(
             'Paustian\BookModule\Entity\BookArticlesEntity',
             'Paustian\BookModule\Entity\BookChaptersEntity',
             'Paustian\BookModule\Entity\BookEntity',
@@ -24,22 +25,21 @@ Here is an example file to use..
         );
         
     public function install() {
-            //Create the tables of the module. Book has 5
             try {
                 $this->schemaTool->create($this->entities);
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 return false;
             }
             $this->setVar('securebooks', false);
-
-            // Initialisation successful
             return true;
         }
+
 
 This function is called only once during the lifetime of your module to install the tables need by your application. The uninstall code is just as easy.
 
 ::
-    public function uninstall() {
+    
+     public function uninstall() {
         try {
             $this->schemaTool->drop($this->entities);
         } catch (\PDOException $e) {
@@ -53,4 +53,4 @@ This function is called only once during the lifetime of your module to install 
         return true;
     }
 
-.. _Symfony https://symfony.com/doc/current/doctrine.html
+.. _Symfony: https://symfony.com/doc/current/doctrine.html
