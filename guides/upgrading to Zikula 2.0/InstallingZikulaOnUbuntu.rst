@@ -32,7 +32,6 @@ You then later in the directions need to configure the apache webserver. Here is
   ErrorLog /var/log/apache2/zikula-error_log
   CustomLog /var/log/apache2/zikula-access_log common
   </VirtualHost>
-::
 
 One thing you may run into is the .htaccess file not being read. A nice trick is to put Test in the top of it and it should break your site with a Internal Server Error. This says your .htaccess file is being read. 
 
