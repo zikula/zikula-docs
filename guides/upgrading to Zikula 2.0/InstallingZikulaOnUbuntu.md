@@ -1,17 +1,19 @@
 
-#Installation of Zikula on Ubuntu Server
-
+Installation of Zikula on Ubuntu Server
+=======================================
 I found installing Zikula on a Ubuntu Server to be quite the process. This had nothing to do with Zikula, but more with getting all the settings for a new Ubuntu server set up correctly so that Zikula would behave. I therefore decided to write a complete tutorial on how to install Zikula on Ubuntu. This tutorial assumes you have a clean install of an Ubuntu Server and was developed with ubuntu 16.04 LTS.
 
 This guide borrows heavily from [the guide at Host Presto](https://hostpresto.com/community/tutorials/how-to-install-zikula-on-ubuntu-16-04/), but there were enough little glitches, I thought I would expand on that and make a more bullet-proof guide. I hope this helps folks with their efforts.
 
-##Requirements
+Requirements
+------------
 * A new install of [Ubuntu Server](https://www.ubuntu.com/download/server).
 * A normal user with sudo priviledges. (If that makes no sense [check this out](https://www.linux.com/learn/linux-101-introduction-sudo%20))
 
 First install your Ubuntu system and once it boots into your desktop, you need to fire up the terminal program. You can find it by clicking on the search function in the launch bar and typing terminal. Click on the program to launch it. 
 
-##Update the System
+Update the System
+-----------------
 You will be using the apt program to download many of the software programs. This is a package manager and is a convenient way to install and update software packages. To update apt type these commands into your terminal program
  
 ```text
@@ -84,7 +86,8 @@ Reload privilege tables now? [Y/n] y
 ```
 You do not need to add a root password because mariadb will only allow the root user access to the root mysql account
 
-##Configure apache for Zikula
+Configure apache for Zikula
+---------------------------
 It is useful to create a virtual host file for Zikula. This allows you to set AllowOverride All which is required to activate .htaccess files that Zikula uses. If this is not configured correctly, routes don't work right in Zikula. You can do this by creating snipeit.conf file inside /etc/apache2/sites-available/ directory:
 
 ```text
@@ -129,7 +132,8 @@ If you get any errors, fix them, otherwise restart Apache web server so that the
 sudo systemctl restart apache2
 ```
 
-##Download and Install Zikula and prepare the web root
+Download and Install Zikula and prepare the web root
+----------------------------------------------------
 Download the tar.gz file for the latest release. Right now this is the command to use
 ```text
 wget https://github.com/zikula/core/releases/download/2.0.2/2.0.tar.gz
