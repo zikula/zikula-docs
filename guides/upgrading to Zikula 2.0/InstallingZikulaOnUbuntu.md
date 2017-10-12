@@ -9,7 +9,7 @@ This guide borrows heavily from [the guide at Host Presto](https://hostpresto.co
 * A new install of [Ubuntu Server](https://www.ubuntu.com/download/server).
 * A normal user with sudo priviledges. (If that makes no sense [check this out](https://www.linux.com/learn/linux-101-introduction-sudo%20))
 
-First install your Ubuntu system and once it boots into your desktop, you need to fire up the terminal program. This is located on the left launch bar at the bottom. It looks like a little TV. CLick on it to start. 
+First install your Ubuntu system and once it boots into your desktop, you need to fire up the terminal program. You can find it by clicking on the search function in the launch bar and typing terminal. Click on the program to launch it. 
 
 ##Update the System
 You will be using the apt program to download many of the software programs. This is a package manager and is a convenient way to install and update software packages. To update apt type these commands into your terminal program
@@ -45,7 +45,7 @@ sudo systemctl start mysql
 sudo systemctl enable apache2
 sudo systemctl enable mysql
 ```
-Calling `systemctl start` does what you would expect and starts the service. The `systemctl enable` sets up the service so that it is launch t start up. When you enable the services you will get a notice that the command was redirected to systemd-sysv-install. That is normal
+Calling `systemctl start` does what you would expect and starts the service. The `systemctl enable` sets up the service so that it is launch at start up of the operating system. When you enable the services you will get a notice that the command was redirected to systemd-sysv-install. That is normal
 
 ##Set up mariadb using mysql commands
 You now want to test to make sure you can launch mysql. Type the following command.
@@ -59,7 +59,7 @@ CREATE DATABASE zikuladb;
 GRANT ALL PRIVILEGES on zikuladb.* TO 'usernamehere'@'localhost' IDENTIFIED BY 'chooseapassword';
 FLUSH PRIVILEGES;
 ```
-You can name your database anything you want. The usernamehere and chooseapassword should be a substituted with your own user and password that you want to use. FLUSH PRIVILEGES writes the changes to disk. Quit mysql and make sure you can log in using your newly created user and password by typing this.
+You can name your database anything you want, but remember it for use when you install Zikula. The usernamehere and chooseapassword should be substituted with your own user and password that you want to use. FLUSH PRIVILEGES writes the changes to disk. Quit mysql (type quit) and make sure you can log in using your newly created user and password by typing this.
 
 ```text
 mysql -u usernamehere -p
@@ -82,16 +82,17 @@ Disallow root login remotely? [Y/n] y
 Remove test database and access to it? [Y/n] y 
 Reload privilege tables now? [Y/n] y
 ```
+You do not need to add a root password because mariadb will only allow the root user access to the root mysql account
 
 ##Configure apache for Zikula
-It is useful to create a virtual host file for Zikula. This allows you to set AllowOverride All which is required for Zikula to activate .htaccess files. If this is not configured correctly, routes don't work right in Zikula. You can do this by creating snipeit.conf file inside /etc/apache2/sites-available/ directory:
+It is useful to create a virtual host file for Zikula. This allows you to set AllowOverride All which is required to activate .htaccess files that Zikula uses. If this is not configured correctly, routes don't work right in Zikula. You can do this by creating snipeit.conf file inside /etc/apache2/sites-available/ directory:
 
 ```text
 sudo nano /etc/apache2/sites-available/zikula.conf
 ```
 Add the following lines to the file.
 
-```xml
+```text
 <VirtualHost *:80>
     ServerAdmin youremail@domain.com
     DocumentRoot "/var/www/html"
@@ -123,20 +124,68 @@ Now test to make sure your configuration is correct and check for any errors in 
 apachectl configtest
 ```
 
-If you get any errors, fix them, otherwise restart Apache web server so that the changes take place:
+If you get any errors, fix them, otherwise restart Apache web server so that the changes are loaded:
 ```text
 sudo systemctl restart apache2
 ```
 
-##Download and Install Zikula
+##Download and Install Zikula and prepare the web root
 Download the tar.gz file for the latest release. Right now this is the command to use
 ```text
 wget https://github.com/zikula/core/releases/download/2.0.2/2.0.tar.gz
 ```
-One thing you may run into is the .htaccess file not being read. A nice trick is to put Test in the top of it and it should break your site with a Internal Server Error. This says your .htaccess file is being read. 
+A stock install of apache will place all the files under root control. This doesn't work for a site that needs to modify the files. It's also a pain to always be doing sudo to make any little change to the website. We can fix this my doing two things.
 
-The next major issue I ran into was setting RewriteBase correctly in the top .htaccess file. Here is what worked for me.
+* Change the group and owner of the html folder (the apache webserver root) to www-data
+* Adding your user to the www-data group so you can make modifications
 
+These commands will make these changes
+
+```text
+sudo chown -R www-data /var/www/html
+sudo chgrp -R www-data /var/www/html
+sudo chmod -R g+w /var/www/html
+usermod -a G www-data yourusername
+```
+You will need to log out and back in to get the changes to be updated. You can check to make sure you are in the group by this command
+
+```text
+groups
+```
+It should list all the groups in which you are a member and www-data should be one of those groups. 
+
+
+Once the file is downloaded issue the following command to move it to the webserver root.
+
+```text
+mv 2.0.tag.gz /var/www/html/
+```
+
+Now we can expand the tar archive, which will inflate all the files and put them in a folder of our root directory. We use the -p flag which perserves all the permissions so that the directories that need to be writable, (e.g. /var/cache) are in fact writable. Once it is expanded we will also change the group and owner to www-data so the web server has access to all the files. 
+
+```text
+cd /var/www/html/
+tar -xvpf 2.0.tar.gz
+sudo chown -R www-data 2.0
+sudo chgrp -R www-data 2.0
+sudo chmod -R g+w 2.0
+mv 2.0 zikula
+```
+
+The last line changes the name of the root Zikula folder to zikula, a better name than 2.0. Once the folder is expanded it is time to test our webserver. First go to the page http://yourdomain.com to make sure the apache web server works. A default ubuntu page should come up. One last modification and we are ready. Open up the root .htaccess file.
+
+```text
+nano zikula/.htaccess
+```
+
+Uncomment the RewriteBase command and change it to
+
+```text
 RewriteBase /zikula/
+```
+We are now ready to install Zikula. Browse the the root folder of your Zikukla site in Firefox (http://yourdomain.com/zikula/) An install page should open up. Enter in the database (zikuladb), database user and database password when asked for and then follow the screens. Zikula should install and you should be taken to the home page when finished. 
 
-I hope this addition to the directions at the link help you to install Zikula on Ubuntu
+One final tip. If when you try to enter the Zikula site, if it fails with a 404 now found error, it means your .htaccess file is not being read. 
+A nice trick is to put Test in the top of the .htaccess file at the root of the zikula directory and it should break your site with a Internal Server Error. If this does not happen, then .htaccess is not being read and something is wrong with your configuration. Look for errors in the virtual host file you set up. This is the most likely place.
+
+I hope this document will help you to install Zikula on Ubuntu
