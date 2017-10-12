@@ -75,7 +75,7 @@ USE zikuladb;
 You should see the text, Database changed. This shows you have access to the database. Finally, increase the security on your mysql installation by running this mysql script
 
 ```text
-mysql_secure_installation
+sudo mysql_secure_installation
 ```
 Answer the questions as follows.
 ```text
