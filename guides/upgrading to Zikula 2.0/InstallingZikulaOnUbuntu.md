@@ -150,7 +150,7 @@ These commands will make these changes
 sudo chown -R www-data /var/www/html
 sudo chgrp -R www-data /var/www/html
 sudo chmod -R g+w /var/www/html
-usermod -a G www-data yourusername
+sudo usermod -a -G www-data yourusername
 ```
 You will need to log out and back in to get the changes to be updated. You can check to make sure you are in the group by this command
 
