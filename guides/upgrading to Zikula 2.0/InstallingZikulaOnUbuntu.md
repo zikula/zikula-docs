@@ -26,7 +26,7 @@ Next restart your system to install these changes
 sudo reboot
 ```
 
-We will now download and add the LAMP stack which stands for Linux Apache, Mysql, and Php. These software programs work together to run your web server and are all needed by Zikula. To download and install them all in one fell swoop, type the following command.
+We will now download and add the LAMP stack which stands for Linux, Apache, Mysql, and Php. These software programs work together to run your web server and are all needed by Zikula. To download and install them all in one fell swoop, type the following command.
 
 ```text
 sudo apt-get install apache2 mariadb-server php7.0 php7.0-mysql php7.0-gd php7.0-mcrypt php7.0-xml php7.0-mbstring php7.0-xmlrpc php7.0-curl libapache2-mod-php7.0 wget -y
