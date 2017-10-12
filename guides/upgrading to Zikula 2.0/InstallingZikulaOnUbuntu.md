@@ -49,7 +49,8 @@ sudo systemctl enable mysql
 ```
 Calling `systemctl start` does what you would expect and starts the service. The `systemctl enable` sets up the service so that it is launch at start up of the operating system. When you enable the services you will get a notice that the command was redirected to systemd-sysv-install. That is normal
 
-##Set up mariadb using mysql commands
+Set up mariadb using mysql commands
+-----------------------------------
 You now want to test to make sure you can launch mysql. Type the following command.
 ```text
 sudo mysql -u root
