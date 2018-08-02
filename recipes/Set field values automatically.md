@@ -124,4 +124,4 @@ so that the generator won't override your changes.
 
 6. Test if it works (the TableColumn field should not be part of the edit form anymore, but it's value should be set automatically without any GET or POST parameters)
 
-Thanks to @Axel Guckelsberger for prviding this solution
+Thanks to @github/Axel Guckelsberger for prviding this solution
