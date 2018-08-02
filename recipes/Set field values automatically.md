@@ -4,7 +4,9 @@ Automated assignation of values to hidden form fields.
 
 ###### Case example:
 
-Creation of a part number consisting of the 'current user ID' & timestamp.
+Creating a part number consisting of the 'current user ID' & timestamp splitted by dash.
+
+Example: `2-1533134203`
 
 A URL parameter like `&set_partnumber=xyz` is not an option in this case as the user potentially could manipulate the field value, even if the form field is 'read only' or 'hidden'.
 
