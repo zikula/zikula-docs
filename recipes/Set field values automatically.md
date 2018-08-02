@@ -1,4 +1,4 @@
-###### Requirement:
+### Requirement:
 
 Automated assignation of values to hidden form fields.
 
@@ -10,7 +10,7 @@ A URL parameter like `&set_partnumber=xyz` is not an option in this case as the 
 
 Assuming that a user is only logged in once at a time, the combination of userID & timestamp leads to a unique part number.
 
-###### Solution:
+### Solution:
 
 This approach is valid for modules that have been built with MOST
 
