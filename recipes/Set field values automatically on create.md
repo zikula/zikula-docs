@@ -28,17 +28,11 @@ calls:
 
 ```
 /**
-
  * Entity initialiser class used to dynamically apply default values to newly created entities.
-
  */
-
 class EntityInitialiser extends AbstractEntityInitialiser
-
 {
-
     // feel free to customise the initialiser
-
 }
 ```
 
@@ -49,51 +43,32 @@ use Zikula\UsersModule\Api\ApiInterface\CurrentUserApiInterface;
 use ITThiele\JumbleSeekerModule\Entity\FooEntity;
 
 /**
-
  * Entity initialiser class used to dynamically apply default values to newly created entities.
-
  */
-
 class EntityInitialiser extends AbstractEntityInitialiser
-
 {
-
     /**
-
      * @var CurrentUserApiInterface
-
      */
-
     protected $currentUserApi;
 
     public function setCurrentUserApi(CurrentUserApiInterface $currentUserApi)
-
     {
-
         $this->currentUserApi = $currentUserApi;
-
     }
 
     /**
-
      * @inheritDoc
-
      */
-
     public function initFoo(FooEntity $entity)
-
     {
-
         $entity = parent::initFoo($entity);
 
         $userId = $this->currentUserApi->get('uid');
-
         $entity->setTableColumn($userId . '-' . time());
 
         return $entity;
-
     }
-
 }
 ```
 
