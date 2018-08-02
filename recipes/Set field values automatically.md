@@ -31,11 +31,11 @@ This approach is valid for modules that have been built with MOST
 
 `class EntityInitialiser extends AbstractEntityInitialiser`
 
-`{`
+`{
 
-    `// feel free to customise the initialiser`
+    // feel free to customise the initialiser
 
-`}`
+}`
 
 with
 
