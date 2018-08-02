@@ -123,3 +123,5 @@ so that the generator won't override your changes.
 5. Regenerate and copy/move the new files to your existing installation.
 
 6. Test if it works (the TableColumn field should not be part of the edit form anymore, but it's value should be set automatically without any GET or POST parameters)
+
+Thanks to @Axel Guckelsberger for prviding this solution
