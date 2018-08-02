@@ -23,19 +23,19 @@ This approach is valid for modules that have been built with MOST
 
 2. Next edit `Entity/Factory/EntityInitialiser.php` and replace
 
-`/**`
+/**
 
- `* Entity initialiser class used to dynamically apply default values to newly created entities.`
+ * Entity initialiser class used to dynamically apply default values to newly created entities.
 
- `*/`
+ */
 
-`class EntityInitialiser extends AbstractEntityInitialiser`
+class EntityInitialiser extends AbstractEntityInitialiser
 
-`{
+{
 
     // feel free to customise the initialiser
 
-}`
+}
 
 with
 
