@@ -14,7 +14,7 @@ Assuming that a user is only logged in once at a time, the combination of userID
 
 ### Solution:
 
-This approach is valid for modules that have been built with MOST [ModuleStudio](https://modulestudio.de/)
+This approach is valid for modules that have been built with MOST ([ModuleStudio.de](https://modulestudio.de/))
 
 1. In `Resources/config/entityFactory.yml` find the definition of your entity intialiser and then add below it's arguments:
 
