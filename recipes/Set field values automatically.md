@@ -17,6 +17,7 @@ This approach is valid for modules that have been built with MOST
 1. In `Resources/config/entityFactory.yml` find the definition of your entity intialiser and then add below it's arguments:
 
 `calls:`
+
 `- [setCurrentUserApi, ['@zikula_users_module.current_user']]`
 
 
