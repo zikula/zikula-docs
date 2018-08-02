@@ -23,7 +23,7 @@ calls:
 
 
 ###### 2. Next edit `Entity/Factory/EntityInitialiser.php` and replace
-
+```
 /**
 
  * Entity initialiser class used to dynamically apply default values to newly created entities.
@@ -37,10 +37,12 @@ class EntityInitialiser extends AbstractEntityInitialiser
     // feel free to customise the initialiser
 
 }
+```
 
 with
 
-`use Zikula\UsersModule\Api\ApiInterface\CurrentUserApiInterface;
+```
+use Zikula\UsersModule\Api\ApiInterface\CurrentUserApiInterface;
 use ITThiele\JumbleSeekerModule\Entity\FooEntity;
 
 
@@ -98,7 +100,8 @@ class EntityInitialiser extends AbstractEntityInitialiser
 
     }
 
-}`
+}
+```
 
 Replace `Foo` with the name of your Entity.
 
@@ -107,7 +110,9 @@ Replace `TableColumn` with the name of the column you want to fill automatically
 ###### 3. Inside MOST look at the application properties,
 
 add `Resources/config/entityFactory.yml` to `markFiles` and
+
 add `Entity/Factory/EntityInitialiser.php` to `skipFiles`
+
 so that the generator won't override your changes.
 
 ###### 4. Also inside MOST look at the properties of the `TableColumn` field and set `visible=false`.
