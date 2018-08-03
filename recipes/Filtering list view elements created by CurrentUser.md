@@ -42,24 +42,25 @@ use ITThiele\JumbleSeekerModule\Helper\Base\AbstractCollectionFilterHelper;
 */
 class CollectionFilterHelper extends AbstractCollectionFilterHelper
 {
-/**
-* @inheritDoc
-*/
-protected function applyDefaultFiltersForYourEntity(QueryBuilder $qb, array $parameters = [])
- {
-     $qb = parent::applyDefaultFiltersForYourEntity($qb, $parameters);
+    /**
+     * @inheritDoc
+     */
+    protected function applyDefaultFiltersForYourEntity(QueryBuilder $qb, array $parameters = [])
+    {
+        $qb = parent::applyDefaultFiltersForYourEntity($qb, $parameters);
 
-     if (null === $this->request) {
-         return $qb;
-     }
+        if (null === $this->request) {
+            return $qb;
+        }
 
-     $tpl = $this->request->query->get('tpl', '');
+        $tpl = $this->request->query->get('tpl', '');
 
-     if ($tpl == 'YourTemplate') {
-          $qb = $this->addCreatorFilter($qb);
-     }
-     return $qb;
- }
+        if ($tpl == 'YourTemplate') {
+            $qb = $this->addCreatorFilter($qb);
+        }
+
+        return $qb;
+    }
 }
 ```
 
