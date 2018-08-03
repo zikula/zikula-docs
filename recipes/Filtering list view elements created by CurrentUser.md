@@ -4,9 +4,7 @@
 
 Providing a list view that only shows elements created by the current user.
 
-Basic logic: If tpl is set to `CurrentUser` add a condition to the query.
-
-The URL parameter `?own=1` is not an option as the user could manipulate the URL
+The URL parameter `?own=1` is not an option in this case because the user could manipulate the URL.
 
 ### Solution:
 
@@ -16,10 +14,11 @@ This approach is valid for modules that have been built with MOST ([ModuleStudio
 
 For example: `viewCurrentUser.html.twig`
 
-This template can be called by appending following parameter to the URL of the standard list view.
+This template can be called by appending following parameter to a standard list view URL.
 
 `?tpl=CurrentUser`
 
+`http://YourDomain/YourModule/YourEntity/view?tpl=CurrentUser`
 
 2. In `Helpers/CollectionFilterHelper.php` you need to add:
 
@@ -30,7 +29,7 @@ In between these two lines:
 ```
 namespace ITThiele\JumbleSeekerModule\Helper;
 
---> PLACE IT IN HERE !!!
+--> PLACE IT IN HERE !!! <--
 use ITThiele\JumbleSeekerModule\Helper\Base\AbstractCollectionFilterHelper;
 
 ```
@@ -56,7 +55,7 @@ protected function applyDefaultFiltersForYourEntity(QueryBuilder $qb, array $par
 
      $tpl = $this->request->query->get('tpl', '');
 
-     if ($tpl == 'CurrentUser') {
+     if ($tpl == 'YourTemplate') {
           $qb = $this->addCreatorFilter($qb);
      }
      return $qb;
@@ -64,8 +63,6 @@ protected function applyDefaultFiltersForYourEntity(QueryBuilder $qb, array $par
 }
 ```
 
-whereby `YourEntity` is the upper-cased name of your entity
+`YourEntity` is the upper-cased name of your entity.
 
-`blabla` is the name of your filter field
-
-and `123` is your filter value
+`YourTemplate` is the upper-cased name of your template. Here `CurrentUser`
