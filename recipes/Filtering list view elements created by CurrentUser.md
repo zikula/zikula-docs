@@ -34,7 +34,7 @@ use ITThiele\JumbleSeekerModule\Helper\Base\AbstractCollectionFilterHelper;
 
 ```
 
-3. Then you need to extend the class `CollectionFilterHelper` as follows:
+3. Then you need to extend the class `CollectionFilterHelper` (same file) as follows:
 
 ```
 /**
@@ -66,3 +66,5 @@ protected function applyDefaultFiltersForYourEntity(QueryBuilder $qb, array $par
 `YourEntity` is the upper-cased name of your entity.
 
 `YourTemplate` is the upper-cased name of your template. Here `CurrentUser`
+
+4. Test if it works (the list view should only provide elements that have been created by the current user)
