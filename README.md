@@ -1,7 +1,3 @@
-zikula-docs
-===========
+**This repository is archived.**
 
-Zikula documentation
-
-docs use [reStructuredText](http://docutils.sourceforge.net/docs/user/rst/quickref.html)
-[primer](http://docutils.sourceforge.net/docs/user/rst/quickstart.html)
+Zikula documentation is now managed [here](https://github.com/zikula/core/tree/master/docs) and automatically deployed to <https://docs.ziku.la/>.
